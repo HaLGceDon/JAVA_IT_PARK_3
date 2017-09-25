@@ -30,7 +30,8 @@ public class Main {
                 int iMax = i;
             }
             int Zamena = array[iMin];
-            array
+            array[iMin] = array[iMax];
+            array[iMax]
 
         }
         System.out.print(max + " " + min);
