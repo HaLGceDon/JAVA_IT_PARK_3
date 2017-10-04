@@ -6,59 +6,25 @@ package VasiliGrigorev;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Document document = new Document();
         Scanner scanner = new Scanner(System.in);
+        Document documents[] = new Document[3];
+        Document[] document = new Document[3];
         while (true) {
             Menu.showMenu();
-
             int command = scanner.nextInt();
-
             switch (command) {
-                case 1: {
-                    document.showDocument();
-                }
-                break;
-                case 2: {
-                    if (document.count == document.lines.length) {
-                        System.err.println("Нет места");
-                        break;
-                    }
-                    System.out.println("Введите строку: ");
-                    String newLine = scanner.next();
-                    document.addLineToBegin(newLine);
-                }
-                break;
                 case 3: {
-                    if (document.count == document.lines.length) {
-                        System.err.println("Нет места");
-                        break;
-                    }
-                    System.out.println("Введите строку: ");
-                    String newLine = scanner.next();
-                    document.addLineToEnd(newLine);
-                }
-                break;
-                case 4: {
-                    System.out.println("Какую строку удалить ");
-                    int lineToDel = scanner.nextInt();
-                    document.delLine(lineToDel);
-                }
-                case 5: {
-                    System.out.println("Введите номер строки");
-                    int reLine = scanner.nextInt();
-                    System.out.println("Введите строку");
-                    String newLine = scanner.next();
-                    document.removeLine(reLine, newLine);
-                }
-                break;
-                case 6: {
-                    System.out.println("Какую строку очистить ");
-                    int lineToClear = scanner.nextInt();
-                    document.clearRow(lineToClear);
+                    System.out.println("Ведите номер документа");
+                    int numberOfDocument = scanner.nextInt();
+                    Submenu.subDocument(documents[numberOfDocument]);
 
                 }
+
+                case 2: {
+                    Documents.newDocuments(documents, document);
+                }
                 break;
-                case 7:
+                case 6:
                     System.exit(0);
             }
         }
