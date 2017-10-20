@@ -5,5 +5,6 @@ public  interface List {
     void delete(int i);
     int searchByIndex(int a);
     void addByIndex(int i, int a);
-    void returnIterator();
+    int returnIterator();
+    boolean isIterator();
 }

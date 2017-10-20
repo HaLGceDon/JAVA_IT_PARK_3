@@ -14,12 +14,11 @@ public class Main {
        list.delete(0);
        list.addByIndex(0, 9);
 
-       for (int i = 0; i < 9; i++) {
-           System.out.print(list.searchByIndex(i) + " ");
+       System.out.println(list.searchByIndex(0));
+
+      for (int i = 0;list.isIterator()==true; i++) {
+           System.out.print(list.returnIterator() + " ");
        }
-
-
-
 
 
     }
