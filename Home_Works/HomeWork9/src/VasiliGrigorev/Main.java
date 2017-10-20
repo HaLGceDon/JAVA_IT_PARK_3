@@ -1,25 +1,25 @@
 package VasiliGrigorev;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args) {
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("1");
-        arrayList.add("2");
-        arrayList.add("3");
-        arrayList.add("4");
-        arrayList.add("5");
+
+       List list = new ArrayList();
+
+       for (int i = 0; i < 10; i++){
+           list.add(i);
+       }
+
+       list.delete(0);
+       list.addByIndex(0, 9);
+
+       for (int i = 0; i < 9; i++) {
+           System.out.print(list.searchByIndex(i) + " ");
+       }
 
 
 
-        Iterator<String> iterator = arrayList.iterator();
-        while(iterator.hasNext()){
-
-            System.out.println(iterator.next());
-        }
 
 
     }

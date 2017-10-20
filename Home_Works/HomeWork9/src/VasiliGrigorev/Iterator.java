@@ -1,8 +1,6 @@
 package VasiliGrigorev;
 
-public interface Iterator <E>{
-
-    E next();
+public interface Iterator {
+    int next();
     boolean hasNext();
-    void remove();
 }
