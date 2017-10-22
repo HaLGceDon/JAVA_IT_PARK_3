@@ -2,68 +2,106 @@ package VasiliGrigorev;
 
 
 
-public class ArrayList implements List {
+public class ArrayList implements List { private int count = 0;
+    private int arrayList[];
 
-    private int count = 0;
-    int list[] = new int[10];
+    public ArrayList() {
+        this.arrayList = new int[10];
+        this.count = 0;
+    }
 
     @Override
-    public void add(int a) {
-        list[count] = a;
-        count++;
+    public void addToEnd(int a) {
+        if (count < arrayList.length) {
+            arrayList[count] = a;
+            count++;
+        }
+        else System.out.println("Недостаточно места.");
+    }
+
+    @Override
+    public void addToBegin(int a) {
+        if (count < arrayList.length) {
+            for (int i = count; i > 0; i--) {
+                arrayList[i] = arrayList[i-1];
+            }
+            count++;
+            arrayList[0] = a;
+        }
+        else System.out.println("Недостаточно места.");
+
     }
 
     @Override
     public void delete(int i) {
-        list[i] = 0;
-
+        for (int k = i; k < arrayList.length - 1; k++ ){
+            arrayList[k] = arrayList[k+1];
+        }
+        count--;
     }
 
     @Override
     public int searchByIndex(int a) {
-        int searchResult = list[a];
+        int searchResult = arrayList[a];
         return searchResult;
     }
 
     @Override
     public void addByIndex(int i, int a) {
+        if (count < arrayList.length) {
+            int temp;
+            int j = i;
+            int k = count;
+            while (j < arrayList.length - 1){
+                arrayList[k] = arrayList[k - 1];
+                k = k -1;
+                j = j +1;
+            }
+            arrayList[i] = a;
+            count++;
+        }
+        else System.out.println("Недостаточно места");
+    }
 
-        list[i] = a;
+    @Override
+    public int amontOfEltmrnt() {
+        return 0;
+    }
+
+    @Override
+    public void expandList() {
+
+    }
+
+    @Override
+    public void deleteByEltments(int a) {
+
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new ArrayItearator();
     }
 
 
 
-
-    public class ArrayIterator implements Iterator {
+    public class ArrayItearator implements Iterator {
         private int index = 0;
+        public ArrayItearator() { index = 0; }
         @Override
         public int next() {
-            int nResult = list[index];
+            int nResult = arrayList[index];
             index++;
             return nResult;
         }
 
 
         @Override
-        public boolean hasNext()  {
-            if (index < list.length) {
-                return true;
-            } else return false;
+        public boolean hasNext() {
+            return index < count;
         }
+
+
     }
-
-    Iterator iterator = new ArrayIterator();
-
-
-    @Override
-    public int returnIterator() {
-       return iterator.next();
-    }
-
-    @Override
-    public boolean isIterator() {
-        return iterator.hasNext();
-    }
-
 
 }
