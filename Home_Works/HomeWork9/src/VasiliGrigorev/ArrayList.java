@@ -2,7 +2,8 @@ package VasiliGrigorev;
 
 
 
-public class ArrayList implements List { private int count = 0;
+public class ArrayList implements List {
+    private int count = 0;
     private int arrayList[];
 
     public ArrayList() {
@@ -34,7 +35,7 @@ public class ArrayList implements List { private int count = 0;
 
     @Override
     public void delete(int i) {
-        for (int k = i; k < arrayList.length - 1; k++ ){
+        for (int k = i; k < count; k++ ){
             arrayList[k] = arrayList[k+1];
         }
         count--;
@@ -64,8 +65,9 @@ public class ArrayList implements List { private int count = 0;
     }
 
     @Override
-    public int amontOfEltmrnt() {
-        return 0;
+    public int amontOfElement() {
+
+        return count;
     }
 
     @Override
@@ -74,7 +76,16 @@ public class ArrayList implements List { private int count = 0;
     }
 
     @Override
-    public void deleteByEltments(int a) {
+    public void deleteByElements(int a) {
+        for (int k = 0; k < count; k++ ){
+            if (arrayList[k] == a) {
+
+                for (int i = k; i < count - 1; i++ ){
+                    arrayList[i] = arrayList[i+1];
+                }
+                count--;
+            }
+        }
 
     }
 

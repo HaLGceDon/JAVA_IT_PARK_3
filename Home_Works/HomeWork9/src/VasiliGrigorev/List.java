@@ -6,9 +6,9 @@ public  interface List {
     void delete(int i);
     int searchByIndex(int a);
     void addByIndex(int i, int a);
-    int amontOfEltmrnt ();
+    int amontOfElement ();
     void expandList ();
-    void deleteByEltments (int a);
+    void deleteByElements (int a);
 
     Iterator iterator();
 }

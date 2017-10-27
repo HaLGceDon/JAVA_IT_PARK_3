@@ -43,7 +43,7 @@ public class LinkedList implements List {
     }
 
     @Override
-    public int amontOfEltmrnt() {
+    public int amontOfElement() {
         return 0;
     }
 
@@ -53,7 +53,7 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void deleteByEltments(int a) {
+    public void deleteByElements(int a) {
 
     }
 

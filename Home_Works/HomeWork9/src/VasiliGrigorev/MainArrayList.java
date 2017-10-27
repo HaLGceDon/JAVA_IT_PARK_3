@@ -6,7 +6,7 @@ public class MainArrayList {
     public static void main(String[] args) {
         List list = new ArrayList();
 
-        for (int i = 0; i <9; i++){
+        for (int i = 0; i < 9; i++) {
             list.addToEnd(i + 1);
         }
 
@@ -28,7 +28,7 @@ public class MainArrayList {
             System.out.print(iterator1.next() + " ");
         }
         System.out.println();
-        list.addByIndex(1,5);
+        list.addByIndex(1, 5);
         Iterator iterator2 = list.iterator();
         while (iterator2.hasNext()) {
             System.out.print(iterator2.next() + " ");
@@ -40,6 +40,16 @@ public class MainArrayList {
         while (iterator3.hasNext()) {
             System.out.print(iterator3.next() + " ");
         }
+        System.out.println();
+
+        list.deleteByElements(5);
+        Iterator iterator4 = list.iterator();
+        while (iterator4.hasNext()) {
+            System.out.print(iterator4.next() + " ");
+        }
+        System.out.println();
+        System.out.println(list.amontOfElement());
+
 
     }
 }
