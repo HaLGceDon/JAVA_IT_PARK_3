@@ -8,6 +8,7 @@ public class MainLinkedList {
         list.addToBegin(8);
         list.addToBegin(9);
         list.addToBegin(1);
+        list.addToEnd(77);
 
         Iterator iterator = list.iterator();
 

@@ -5,6 +5,8 @@ public class LinkedList implements List {
     private Node head;
     private int count;
 
+
+
     public LinkedList() {
         this.head = null;
         this.count = 0;
@@ -12,7 +14,10 @@ public class LinkedList implements List {
 
     @Override
     public void addToEnd(int element) {
-        // TODO: реализовать вставку в конец самостоятельно
+
+
+
+       count++;
     }
 
     public void addToBegin(int element) {
@@ -67,6 +72,7 @@ public class LinkedList implements List {
         private Node currentNode;
 
         LinkedListIterator() {
+
             currentNode = head;
         }
 
@@ -79,10 +85,10 @@ public class LinkedList implements List {
 
         @Override
         public boolean hasNext() {
+
             return currentNode != null;
         }
     }
-
     private static class Node {
         private int value;
         private Node next;
@@ -92,4 +98,5 @@ public class LinkedList implements List {
             this.next = null;
         }
     }
+
 }
