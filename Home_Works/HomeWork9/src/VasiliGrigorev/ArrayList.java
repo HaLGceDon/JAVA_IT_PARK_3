@@ -34,11 +34,16 @@ public class ArrayList implements List {
     }
 
     @Override
-    public void delete(int i) {
+    public void deleteByIndex (int i) {
         for (int k = i; k < count; k++ ){
             arrayList[k] = arrayList[k+1];
         }
         count--;
+    }
+
+    @Override
+    public void delete() {
+
     }
 
     @Override

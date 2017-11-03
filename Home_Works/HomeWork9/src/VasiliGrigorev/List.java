@@ -3,7 +3,8 @@ package VasiliGrigorev;
 public  interface List {
     void addToEnd(int a);
     void addToBegin(int a);
-    void delete(int i);
+    void deleteByIndex (int i);
+    void delete ();
     int searchByIndex(int a);
     void addByIndex(int i, int a);
     int amontOfElement ();

@@ -14,7 +14,15 @@ public class LinkedList implements List {
 
     @Override
     public void addToEnd(int element) {
-
+        Node newNode = new Node(element);
+        Node lastNode = null;
+        LinkedListIterator iterator = new LinkedListIterator();
+        while (iterator.hasNext()) {
+            lastNode = iterator.currentNode;
+            iterator.next();
+        }
+        lastNode.next = newNode;
+        count++;
 
 
        count++;
@@ -33,18 +41,57 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void delete(int i) {
+    public void deleteByIndex (int i) {
+        if (head != null) {
+            if (head.next != null) {
+                Node current = head;
+                Node next = current.next;
+                while (next.next != null) {
+                    current = next;
+                    next = current.next;
+                }
+                current.next = null;
+            } else {
+                head = null;
+            }
+            count--;
+        } else {
+            System.out.println("пустo");
+        }
+    }
+
+    @Override
+    public void delete() {
 
     }
 
     @Override
-    public int searchByIndex(int a) {
+    public int searchByIndex(int i) {
+
         return 0;
     }
 
     @Override
     public void addByIndex(int i, int a) {
-
+        Node newNode = new Node(a);
+        Node current = head;
+        Node next = current.next;
+        if (i != 0) {
+            for (int k = 0; k < i - 1; i++) {
+                if (current.next != null) {
+                    current = next;
+                    next = current.next;
+                }
+            }
+            current.next = newNode;
+            newNode.next = next;
+        } else {
+            newNode.value = head.value;
+            head.next = newNode;
+            head.value = a;
+            newNode.next = next;
+        }
+        count++;
     }
 
     @Override
@@ -54,7 +101,16 @@ public class LinkedList implements List {
 
     @Override
     public void expandList() {
-
+        Node temp = null;
+        Node current = head;
+        Node next;
+        while (current != null) {
+            next = current.next;
+            current.next = temp;
+            temp = current;
+            current = next;
+        }
+        head = temp;
     }
 
     @Override
