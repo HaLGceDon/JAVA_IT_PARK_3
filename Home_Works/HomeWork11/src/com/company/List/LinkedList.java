@@ -29,6 +29,11 @@ public class LinkedList implements List {
     }
 
     @Override
+    public Object searchByIndex(int a) {
+        return null;
+    }
+
+    @Override
     public void addToBegin(Object object) {
         Node newNode = new Node(object);
 

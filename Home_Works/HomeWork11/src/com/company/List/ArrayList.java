@@ -23,6 +23,11 @@ public class ArrayList implements List {
         System.out.println("не определено");
     }
 
+    public Object searchByIndex(int a) {
+        Object searchResult = arrayList[a];
+        return searchResult;
+    }
+
 
     @Override
     public void addToBegin(Object object) {
