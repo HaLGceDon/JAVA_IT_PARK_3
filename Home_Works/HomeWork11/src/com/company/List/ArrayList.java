@@ -14,8 +14,8 @@ public class ArrayList implements List {
 
 
     public void addByIndex(int i, Object object) {
-       arrayList[i] = object;
-       count++;
+        arrayList[i] = object;
+        count++;
     }
 
     @Override

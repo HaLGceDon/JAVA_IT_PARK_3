@@ -1,4 +1,4 @@
-package VasiliGrigorev;
+package com.company;
 
 public class LinkedList implements List {
 
@@ -15,17 +15,14 @@ public class LinkedList implements List {
     @Override
     public void addToEnd(int element) {
         Node newNode = new Node(element);
-        Node lastNode = null;
+        Node previousNode = null;
         LinkedListIterator iterator = new LinkedListIterator();
         while (iterator.hasNext()) {
-            lastNode = iterator.currentNode;
+            previousNode = iterator.currentNode;
             iterator.next();
         }
-        lastNode.next = newNode;
+        previousNode.next = newNode;
         count++;
-
-
-       count++;
     }
 
     public void addToBegin(int element) {
@@ -41,81 +38,92 @@ public class LinkedList implements List {
     }
 
     @Override
-    public void deleteByIndex (int i) {
-        if (head != null) {
-            if (head.next != null) {
-                Node current = head;
-                Node next = current.next;
-                while (next.next != null) {
-                    current = next;
-                    next = current.next;
-                }
-                current.next = null;
-            } else {
-                head = null;
-            }
-            count--;
-        } else {
-            System.out.println("пустo");
+    public void deleteByindex(int i) {
+        Node node = head;
+        Node next = node.next;
+        for (int k = 0; k < i; k++){
+            node = next;
+            next = next.next;
         }
+        node.value = next.value;
+        node.next = next.next;
+        count--;
     }
 
     @Override
     public void delete() {
-
+        LinkedListIterator iterator = new LinkedListIterator();
+        int k = 0;
+        Node deleteNode = null;
+        while (iterator.hasNext()) {
+            if (k == count - 2) {
+                deleteNode = iterator.currentNode;
+            }
+            k++;
+            iterator.next();
+        }
+        deleteNode.next = null;
+        count--;
     }
 
     @Override
-    public int searchByIndex(int i) {
-
-        return 0;
+    public int searchByIndex(int a) {
+        LinkedListIterator iterator = new LinkedListIterator();
+        int k = 0;
+        int result = 0;
+        while (iterator.hasNext()) {
+            if (k == a) {
+                result = iterator.next();
+            }
+            iterator.next();
+            k++;
+        }
+        return result;
     }
 
     @Override
     public void addByIndex(int i, int a) {
         Node newNode = new Node(a);
-        Node current = head;
-        Node next = current.next;
-        if (i != 0) {
-            for (int k = 0; k < i - 1; i++) {
-                if (current.next != null) {
-                    current = next;
-                    next = current.next;
-                }
-            }
-            current.next = newNode;
-            newNode.next = next;
-        } else {
-            newNode.value = head.value;
-            head.next = newNode;
-            head.value = a;
-            newNode.next = next;
+        Node node = head;
+        Node next = node.next;
+        for (int k = 0; k < i - 1; k++){
+            node = next;
+            next = next.next;
         }
+        node.next = newNode;
+        newNode.next = next;
         count++;
+
     }
 
     @Override
     public int amontOfElement() {
-        return 0;
+        return count;
     }
 
     @Override
     public void expandList() {
-        Node temp = null;
-        Node current = head;
-        Node next;
-        while (current != null) {
-            next = current.next;
-            current.next = temp;
-            temp = current;
-            current = next;
+        Node node = head;
+        Node expandNode = null;
+        while (node != null) {
+            Node next = node.next;
+            node.next = expandNode;
+            expandNode = node;
+            node = next;
         }
-        head = temp;
+        head = expandNode;
     }
 
     @Override
     public void deleteByElements(int a) {
-
+        Node newNode = head;
+        while (newNode.next != null) {
+            if (newNode.next.value == a) {
+                newNode.next = newNode.next.next;
+            }
+            else newNode = newNode.next;
+        }
+        count--;
     }
 
     @Override

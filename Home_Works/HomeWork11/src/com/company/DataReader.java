@@ -57,8 +57,8 @@ public class DataReader {
             currentByte = input.read();
         }
 
-       result = new String(currentWord, 0, lettersCount);
-       return result;
+        result = new String(currentWord, 0, lettersCount);
+        return result;
     }
 
     public int readInteger() {
@@ -104,6 +104,6 @@ public class DataReader {
             result = result + currentNumber[i] * pow;
             pow = pow * 10;
         }
-      return result;
+        return result;
     }
 }

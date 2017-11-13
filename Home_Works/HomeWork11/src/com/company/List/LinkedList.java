@@ -24,8 +24,6 @@ public class LinkedList implements List {
 
     @Override
     public void concat(LinkedList otherList) {
-
-
     }
 
     @Override
@@ -45,6 +43,7 @@ public class LinkedList implements List {
         count++;
 
     }
+
 
     @Override
     public void addByIndex(int a, Object object) {

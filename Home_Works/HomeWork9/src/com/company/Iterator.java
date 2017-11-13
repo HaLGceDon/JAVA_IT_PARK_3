@@ -1,4 +1,4 @@
-package VasiliGrigorev;
+package com.company;
 
 public interface Iterator {
     int next();
