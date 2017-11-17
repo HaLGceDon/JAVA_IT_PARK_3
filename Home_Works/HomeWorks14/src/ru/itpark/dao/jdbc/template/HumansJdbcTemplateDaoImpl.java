@@ -95,6 +95,7 @@ public class HumansJdbcTemplateDaoImpl implements HumansDao {
 
   @Override
   public List<Human> findAll() {
+
     return template.query(SQL_SELECT_USERS, humanRowMapper);
   }
 }
