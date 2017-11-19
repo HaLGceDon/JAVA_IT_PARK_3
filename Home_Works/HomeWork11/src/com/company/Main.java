@@ -3,7 +3,6 @@ package com.company;
 import com.company.List.ArrayList;
 import com.company.List.Iterator;
 import com.company.List.LinkedList;
-import com.company.List.List;
 
 import java.io.IOException;
 
@@ -17,7 +16,7 @@ public class Main {
         DataReader numberReader = new DataReader("input.txt");
         int number = numberReader.readInteger();
 
-        List arrayList = new ArrayList();
+        ArrayList arrayList = new ArrayList();
         for (int i = 0; i < 100; i++) {
             LinkedList linkedList = new LinkedList();
             arrayList.addByIndex(i, linkedList);
@@ -32,19 +31,32 @@ public class Main {
         }
 
         Iterator iterator = arrayList.iterator();
+        LinkedList concatLnkedList = new LinkedList();
         while (iterator.hasNext()) {
-            System.out.println();
-            List printList = new LinkedList();
-            printList = (List) iterator.next();
-            Iterator iteratorPrintList = printList.iterator();
-            while (iteratorPrintList.hasNext()) {
-                Human printHuman = (Human) iteratorPrintList.next();
-                System.out.print(printHuman.getName() + " - " + printHuman.getAge() + ", ");
-
-            }
-            System.out.println();
-
-
+            LinkedList newLinkedList  = (LinkedList) iterator.next();
+            concatLnkedList.concat(newLinkedList);
         }
+
+        Iterator printIterator = concatLnkedList.iterator();
+        while (printIterator.hasNext()) {
+            Human printHuman = (Human) printIterator.next();
+            System.out.print(printHuman.getName() + " - " + printHuman.getAge() + ", ");
+        }
+
+   //     Iterator iterator = arrayList.iterator();
+   //     while (iterator.hasNext()) {
+   //         System.out.println();
+   //         LinkedList printList = new LinkedList();
+   //         printList = (LinkedList) iterator.next();
+   //         Iterator iteratorPrintList = printList.iterator();
+   //         while (iteratorPrintList.hasNext()) {
+   //             Human printHuman = (Human) iteratorPrintList.next();
+   //             System.out.print(printHuman.getName() + " - " + printHuman.getAge() + ", ");
+   //
+   //         }
+   //         System.out.println();
+   //
+   //
+   //     }
     }
 }

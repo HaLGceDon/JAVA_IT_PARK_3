@@ -2,7 +2,7 @@ package com.company.List;
 
 
 
-public class LinkedList implements List {
+public class LinkedList {
     private Node head;
     private int count;
 
@@ -22,16 +22,24 @@ public class LinkedList implements List {
         this.count = 0;
     }
 
-    @Override
-    public void concat(LinkedList otherList) {
+
+    public void concat (LinkedList otherList) {
+        Iterator iterator = this.iterator();
+        Node lastNode = this.head;
+        Node otherNode = otherList.head;
+        if (this.head == null) {
+            this.head = otherList.head;
+        }
+        else {
+            while (lastNode.next != null) {
+                lastNode = lastNode.next;
+            }
+            lastNode.next = otherList.head;
+        }
     }
 
-    @Override
-    public Object searchByIndex(int a) {
-        return null;
-    }
 
-    @Override
+
     public void addToBegin(Object object) {
         Node newNode = new Node(object);
 
@@ -45,14 +53,9 @@ public class LinkedList implements List {
     }
 
 
-    @Override
-    public void addByIndex(int a, Object object) {
-        System.out.println("gecnjq vtnjl");
-    }
 
 
 
-    @Override
     public Iterator iterator() {
         return new LinkedListIterator();
     }

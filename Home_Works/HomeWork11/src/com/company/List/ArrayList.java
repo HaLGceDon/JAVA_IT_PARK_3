@@ -1,6 +1,6 @@
 package com.company.List;
 
-public class ArrayList implements List {
+public class ArrayList {
 
     private int count = 0;
     private Object arrayList[];
@@ -18,18 +18,11 @@ public class ArrayList implements List {
         count++;
     }
 
-    @Override
-    public void concat(LinkedList otherList) {
-        System.out.println("не определено");
-    }
-
     public Object searchByIndex(int a) {
         Object searchResult = arrayList[a];
         return searchResult;
     }
 
-
-    @Override
     public void addToBegin(Object object) {
         if (count < arrayList.length) {
             for (int i = count; i > 0; i--) {
@@ -41,8 +34,7 @@ public class ArrayList implements List {
 
     }
 
-    @Override
-    public Iterator iterator() {
+      public Iterator iterator() {
         return new ArrayItearator();
     }
 
