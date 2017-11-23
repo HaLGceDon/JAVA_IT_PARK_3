@@ -19,6 +19,8 @@ public class Main {
         humans.add(zagir);
         humans.add(lex);
 
+
+
         Comporator comporator1 = new HumanHeightComporator();
         for (int i = humans.size() - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
