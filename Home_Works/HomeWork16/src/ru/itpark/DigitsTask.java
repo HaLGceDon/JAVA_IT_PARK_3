@@ -13,10 +13,15 @@ public class DigitsTask implements Runnable{
 
       @Override
       public void run() {
+        int k = 0;
          charText = text.toCharArray();
          for (int i = 0; i < charText.length; i++) {
              if (charText[i] > 47 & charText[i] < 58) {
-                 System.out.println(charText[i]);
+                 System.out.print(charText[i]);
+                 k++;
+                 if (k % 5 == 0) {
+                     System.out.println();
+                 }
              }
           }
       }
