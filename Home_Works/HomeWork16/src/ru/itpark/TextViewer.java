@@ -25,10 +25,7 @@ public class TextViewer {
         for (int i = 0; i < tasksCount; i++) {
             new Thread(tasks[i]).start();
         }
-
     }
-
-
 
 
     public String getText() {
