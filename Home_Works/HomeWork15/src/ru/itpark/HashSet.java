@@ -90,7 +90,6 @@ public class HashSet <V> {
 
         }
 
-       // Не смог сделать нормальный итератор
        // Сделал Print Next
         public void printNext() {
             nextNodeResult = buckets[index];
