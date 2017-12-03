@@ -7,9 +7,20 @@ import java.util.Properties;
 
 public class ComponentsFactory {
 
+    private final static ComponentsFactory instance;
+
+    static {
+
+        instance = new ComponentsFactory();
+    }
+
+    public static ComponentsFactory getInstance() {
+        return instance;
+    }
+
     private Properties properties;
 
-    public ComponentsFactory() {
+    private ComponentsFactory() {
         properties = new Properties();
         try {
             properties.load(new FileReader("application.properties"));
@@ -38,4 +49,9 @@ public class ComponentsFactory {
             throw new IllegalArgumentException(e);
         }
     }
+
+
+
+
 }
+

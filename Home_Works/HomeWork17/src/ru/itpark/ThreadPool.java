@@ -59,8 +59,8 @@ public class ThreadPool {
                     }
                     // получили задачу
                     task = tasks.removeFirst();
-                    task.run();
                 }
+                task.run();
             }
         }
     }
