@@ -55,14 +55,12 @@ public class ThreadPool {
                         } catch (InterruptedException e) {
                             throw new IllegalStateException(e);
                         }
-                    }
-                }
-                // как только мы дождались момента, что задача есть
 
-                // получили задачу
-                task = tasks.removeFirst();
-                // запустили на выполнение
-                task.run();
+                    }
+                    // получили задачу
+                    task = tasks.removeFirst();
+                    task.run();
+                }
             }
         }
     }

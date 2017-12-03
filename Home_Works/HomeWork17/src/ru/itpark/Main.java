@@ -75,21 +75,21 @@ public class Main {
                     }
                });
        }
- //     ExecutorService service = Executors.newFixedThreadPool(n);
- //
- //       for (int i = 0; i < n; i++) {
- //           final int k = i;
- //           service.submit(new Runnable() {
- //               @Override
- //               public void run() {
- //                   for (int j = 0; j < m; j++) {
- //                       if (number == array[k][j]) {
- //                           System.out.print(Thread.currentThread().getName() + " - ");
- //                           System.out.println(k + "," + j);
- //                       }
- //                   }
- //               }
- //           });
- //       }
+     ExecutorService service = Executors.newFixedThreadPool(n);
+
+       for (int i = 0; i < n; i++) {
+           final int k = i;
+           service.submit(new Runnable() {
+               @Override
+               public void run() {
+                   for (int j = 0; j < m; j++) {
+                       if (number == array[k][j]) {
+                           System.out.print(Thread.currentThread().getName() + " - ");
+                           System.out.println(k + "," + j);
+                       }
+                   }
+               }
+           });
+       }
    }
 }
