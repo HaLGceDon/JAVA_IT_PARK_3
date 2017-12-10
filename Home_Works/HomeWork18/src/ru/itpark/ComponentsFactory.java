@@ -8,6 +8,7 @@ import java.util.Properties;
 public class ComponentsFactory {
 
     private final static ComponentsFactory instance;
+    private Properties properties;
 
     static {
 
@@ -18,7 +19,7 @@ public class ComponentsFactory {
         return instance;
     }
 
-    private Properties properties;
+
 
     private ComponentsFactory() {
         properties = new Properties();
