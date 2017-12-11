@@ -27,7 +27,7 @@ public class Main  {
 
 
         String name = "postgres";
-        String password = "HaL_17071991";
+        String password = "1234";
         String url = "jdbc:postgresql://localhost:5432/grigoriev_db";
 
         try {
