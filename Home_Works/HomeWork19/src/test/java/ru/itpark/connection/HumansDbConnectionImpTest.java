@@ -13,7 +13,7 @@ public class HumansDbConnectionImpTest {
     @Before
     public void setUp() throws Exception {
         String name = "postgres";
-        String password = "HaL_17071991";
+        String password = "1234";
         String url = "jdbc:postgresql://localhost:5432/grigoriev_db";
         Connection connection = DriverManager.getConnection(url, name, password);
         testedHumansDbConnection = new HumansDbConnectionImp(connection);
