@@ -15,7 +15,7 @@ public class HumansDaoJdbcTemplateImplTest {
     public void setUp() throws Exception {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername("postgres");
-        dataSource.setPassword("HaL_17071991");
+        dataSource.setPassword("1234");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/grigoriev_db");
 
         testedHumansDao = new HumansDaoJdbcTemplateImpl(dataSource);
