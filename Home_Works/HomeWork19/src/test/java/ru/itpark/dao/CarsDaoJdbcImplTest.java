@@ -7,14 +7,13 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itpark.ComponentsFactory;
 import ru.itpark.models.Car;
 
-public class CarsDaoJdbcTemplateImplTest {
-    private CarsDaoJdbcTemplateImpl testedCarsDao;
-
+public class CarsDaoJdbcImplTest {
+    private CarsDaoJdbcImpl testedCarsJdbConnection;
     @Before
     public void setUp() throws Exception {
         ComponentsFactory componentsFactory = ComponentsFactory.getComponentsFactory();
         DriverManagerDataSource dataSource = (DriverManagerDataSource) componentsFactory.dataSource();
-        testedCarsDao = new CarsDaoJdbcTemplateImpl(dataSource);
+        testedCarsJdbConnection = new CarsDaoJdbcImpl(dataSource);
     }
 
     @Test
@@ -26,14 +25,13 @@ public class CarsDaoJdbcTemplateImplTest {
                 .number("x777xx")
                 .build();
 
-        Car actual = testedCarsDao.find(1);
-
+        Car actual = testedCarsJdbConnection.find(1);
         Assert.assertEquals(expected, actual);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void findTestOnBadUserId() {
-        testedCarsDao.find(44);
+        testedCarsJdbConnection.find(44);
     }
 
 }

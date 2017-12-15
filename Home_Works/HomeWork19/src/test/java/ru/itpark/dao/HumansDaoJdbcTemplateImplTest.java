@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import ru.itpark.ComponentsFactory;
 import ru.itpark.models.Human;
 
 import static org.junit.Assert.*;
@@ -13,11 +14,8 @@ public class HumansDaoJdbcTemplateImplTest {
 
     @Before
     public void setUp() throws Exception {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("HaL_17071991");
-        dataSource.setUrl("jdbc:postgresql://localhost:5432/grigoriev_db");
-
+        ComponentsFactory componentsFactory = ComponentsFactory.getComponentsFactory();
+        DriverManagerDataSource dataSource = (DriverManagerDataSource) componentsFactory.dataSource();
         testedHumansDao = new HumansDaoJdbcTemplateImpl(dataSource);
     }
 

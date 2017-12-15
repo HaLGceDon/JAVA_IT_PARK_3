@@ -5,35 +5,34 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import ru.itpark.ComponentsFactory;
-import ru.itpark.models.Car;
+import ru.itpark.models.Human;
 
-public class CarsDaoJdbcTemplateImplTest {
-    private CarsDaoJdbcTemplateImpl testedCarsDao;
-
+public class HumansDaoJdbcImpTest {
+    private HumansDaoJdbcImp testedHumansJdbConnection;
     @Before
     public void setUp() throws Exception {
         ComponentsFactory componentsFactory = ComponentsFactory.getComponentsFactory();
         DriverManagerDataSource dataSource = (DriverManagerDataSource) componentsFactory.dataSource();
-        testedCarsDao = new CarsDaoJdbcTemplateImpl(dataSource);
+        testedHumansJdbConnection = new HumansDaoJdbcImp(dataSource);
     }
 
     @Test
     public void find() throws Exception {
-        Car expected = Car.builder()
-                .color("red")
-                .id(1)
-                .model("Tesla")
-                .number("x777xx")
+        Human expected = Human.builder()
+                .id(2)
+                .age(75)
+                .name("Авраам")
+                .height(180)
                 .build();
 
-        Car actual = testedCarsDao.find(1);
+        Human actual = testedHumansJdbConnection.find(2);
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void findTestOnBadUserId() {
-        testedCarsDao.find(44);
+        testedHumansJdbConnection.find(44);
     }
 
 }
