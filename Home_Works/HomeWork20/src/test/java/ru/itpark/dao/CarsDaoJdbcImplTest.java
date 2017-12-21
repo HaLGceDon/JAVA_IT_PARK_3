@@ -3,6 +3,7 @@ package ru.itpark.dao;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -10,18 +11,16 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import ru.itpark.ComponentsFactory;
 import ru.itpark.models.Car;
 
+import javax.sql.DataSource;
+
 public class CarsDaoJdbcImplTest {
     private CarsDaoJdbcImpl testedCarsJdbConnection;
     @Before
     public void setUp() throws Exception {
-        EmbeddedDatabase database = new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.HSQL)
-                .addScript("schema_cars.sql")
-                .addScript("data_cars.sql")
-                .build();
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("test-context.xml");
+        DataSource dataSource = context.getBean(DataSource.class);
 
-
-        testedCarsJdbConnection =  new CarsDaoJdbcImpl(database);
+        testedCarsJdbConnection =  new CarsDaoJdbcImpl(dataSource);
     }
 
     @Test
