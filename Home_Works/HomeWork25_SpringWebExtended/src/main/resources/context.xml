@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <context:property-placeholder location="db.properties"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.company.repository"/>
+    <tx:annotation-driven/>
+
+
+    <bean id="hikariDatasource" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="username" value="${datasource.username}"/>
+        <property name="jdbcUrl" value="${datasource.url}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="driverClassName" value="${datasource.driver}"/>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="username" value="${datasource.username}"/>
+        <property name="url" value="${datasource.url}"/>
+        <property name="password" value="${datasource.password}"/>
+        <property name="driverClassName" value="${datasource.driver}"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.company.models"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+    </bean>
+
+    <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="showSql" value="true"/>
+        <property name="generateDdl" value="true"/>
+    </bean>
+
+    <bean id="springContext" class="com.company.config.ApplicationContext"/>
+
+
+</beans>

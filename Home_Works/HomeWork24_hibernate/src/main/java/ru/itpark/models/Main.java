@@ -1,4 +1,4 @@
-package models;
+package ru.itpark.models;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,7 +47,6 @@ public class Main {
     // newUser.setId(777L);
     // session.persist(newUser);
     session.merge(newUser);
-    session.persist(newUser);
     session.getTransaction().commit();
     session.close();
   }
