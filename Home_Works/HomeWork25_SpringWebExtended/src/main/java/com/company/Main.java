@@ -1,6 +1,7 @@
-package com.company.repository;
+package com.company;
 
 import com.company.models.User;
+import com.company.repository.UsersRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
