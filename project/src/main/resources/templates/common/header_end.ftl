@@ -1,4 +1,5 @@
 <#ftl encoding='UTF-8'>
+
 <div id="footer">
     <div>
         <a href="index.ftl" class="logo"><img src="images/animal-kingdom.jpg" alt=""/></a>
@@ -12,14 +13,14 @@
             <li><a href="/tickets">Билеты</a></li>
             <li><a href="/zoo">О зоопарке</a></li>
             <li><a href="/events">События</a></li>
-            <li><a href="/blog">Блог</a></li>
             <li><a href="/gallery">Галерея</a></li>
+            <li><a href="/contact">Контакты</a></li>
         </ul>
         <ul>
-            <li><a href="/live">Получайте удовольствие от визита </a></li>
-            <li><a href="/live">Пожертвуйте на помощь животным</a></li>
-            <li><a href="/live">Узнавайте новое о животных</a></li>
+            <li><a href="/zoo">Получайте удовольствие от визита </a></li>
+            <li><a href="/zoo">Пожертвуйте на помощь животным</a></li>
+            <li><a href="/zoo">Узнавайте новое о животных</a></li>
         </ul>
     </div>
 </div>
-</div>
+

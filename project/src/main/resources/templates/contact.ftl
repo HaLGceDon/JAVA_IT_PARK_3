@@ -2,7 +2,7 @@
 <html>
 	<head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <title>Котакты</title>
         <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
         <link rel="stylesheet" href="/static/css/reset.css"> <!-- CSS reset -->
@@ -21,8 +21,9 @@
 
 
 				</div>
-			</div>
 			<#include 'common/header_animals.ftl'/>
+			</div>
+
 		<#include 'common/header_end.ftl'/>
 		</div>
 	</body>

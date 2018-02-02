@@ -10,8 +10,9 @@
 		<#include 'common/header_begin.ftl'/>
 			<div id="content">
 
+			<#include 'common/header_animals.ftl'/>
             </div>
-		<#include 'common/header_animals.ftl'/>
+
 		<#include 'common/header_end.ftl'/>
 		</div>
 	</body>

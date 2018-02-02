@@ -10,19 +10,17 @@
 <body>
 <div id="page">
 <#include 'common/header_begin.ftl'/>
-
     <div id="content">
-        <div class="selection2">
 
-    <h2>Поздравляем, письмо для подтверждения регистрации отправлено на
-        - ${model.email}</h2>
-
+        <div id="section2">
+            <#if model.result == true>  <h2>Оплачено</h2> </#if>
+            <#if model.result == false>  <h2>Ошибка. <a href="/buy_tickets_pay"><p> Назад </p></a></h2> </#if>
         </div>
+
     <#include 'common/header_animals.ftl'/>
     </div>
 
-
-    <#include 'common/header_end.ftl'/>
-    </div>
+<#include 'common/header_end.ftl'/>
+</div>
 </body>
 </html>

@@ -26,11 +26,11 @@ public class User {
   private String hashPassword;
   private String email;
   private LocalDateTime registrationTime;
-
   private String confirmCode;
 
   @Enumerated(value = EnumType.STRING)
   private State state;
 
-
+  @Enumerated(value = EnumType.STRING)
+  private Role role;
 }

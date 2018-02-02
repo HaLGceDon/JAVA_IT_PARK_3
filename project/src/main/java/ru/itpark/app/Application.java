@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan(basePackages = "ru.itpark")
 @EntityScan(basePackages = "ru.itpark.models")
 @EnableJpaRepositories(basePackages = "ru.itpark.repositories")
-@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
+//@EnableAutoConfiguration(exclude = SecurityAutoConfiguration.class)
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class);

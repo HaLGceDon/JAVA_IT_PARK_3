@@ -1,7 +1,8 @@
 <#ftl encoding='UTF-8'>
-<div id="page">
+
     <div id="header">
         <a href="/" id="logo"><img src="images/logo-page.jpg" alt=""/></a>
+
         <nav class="main-nav">
             <li><a class="cd-signup"  id="button href="#0"> Зарегестрироваться / Войти</a></li>
         </nav>

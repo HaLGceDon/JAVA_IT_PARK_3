@@ -1,5 +1,6 @@
 <#ftl encoding='UTF-8'>
-<div id="content">
+
+
 <div class="featured">
     <h2>Познакомьтесь с нашими животными</h2>
     <ul>
@@ -37,4 +38,4 @@
         </li>
     </ul>
 </div>
-</div>
+

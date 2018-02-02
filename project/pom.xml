@@ -52,13 +52,9 @@
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
-            <version>1.4.6</version>
+            <version>1.4.7</version>
         </dependency>
-        <dependency>
-            <groupId>jca</groupId>
-            <artifactId>jca</artifactId>
-            <version>1.5</version>
-        </dependency>
+
     </dependencies>
 
     <!--Указываем конфигурацию сборки приложения-->

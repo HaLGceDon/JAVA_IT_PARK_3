@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.RegistrationForm;
+import ru.itpark.models.Role;
 import ru.itpark.models.State;
 import ru.itpark.models.User;
 import ru.itpark.repositories.UsersRepository;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class RegistrationServiceImpl implements RegistrationService <RegistrationForm> {
+public class RegistrationServiceImpl implements RegistrationService {
 
 
   @Autowired
@@ -38,6 +39,17 @@ public class RegistrationServiceImpl implements RegistrationService <Registratio
     LocalDateTime registrationTime = LocalDateTime.now();
     String confirmString = UUID.randomUUID().toString().replace("-","");
 
+    Optional<User> userCheckLogin = usersRepository.findByLogin(form.getLogin());
+    if (userCheckLogin.isPresent()) {
+      return "bad_login";
+     // throw new IllegalArgumentException("This login is busy.");
+    }
+    Optional<User> userCheckEmail = usersRepository.findByEmail(form.getEmail());
+    if (userCheckEmail.isPresent()) {
+      return "bad_email";
+      //throw new IllegalArgumentException("This Email is busy.");
+    }
+
     User newUser = User.builder()
             .name(form.getName())
             .confirmCode(confirmString)
@@ -48,11 +60,12 @@ public class RegistrationServiceImpl implements RegistrationService <Registratio
             .hashPassword(hashPassword)
             .registrationTime(registrationTime)
             .state(State.NOT_CONFIRMED)
+            .role(Role.USER)
             .build();
 
     usersRepository.save(newUser);
 
-    String text = "<a href=\"localhost/confirm/" +newUser.getConfirmCode()+ "\">Пройдите по ссылке</a>";
+    String text = "<a href=\"https://localhost/confirm/" +newUser.getConfirmCode()+ "\">Пройдите по ссылке</a>";
 
     MimeMessage message = javaMailSender.createMimeMessage();
     message.setContent(text, "text/html");

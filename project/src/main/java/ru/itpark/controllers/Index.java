@@ -8,51 +8,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Index {
 
     @GetMapping ("/")
-    public String index() {
+    public String getIndex() {
         return "index";
     }
 
-    @GetMapping ("/blog")
-    public String blog() {
-        return "blog";
-    }
 
     @GetMapping ("/contact")
-    public String contact() {
+    public String getContact() {
         return "contact";
     }
 
     @GetMapping ("/events")
-    public String events() {
+    public String getEvents() {
         return "events";
     }
 
     @GetMapping ("/gallery")
-    public String gallery() { return "gallery";
-    }
-
-    @GetMapping ("/info")
-    public String info() {
-        return "info";
-    }
-
-    @GetMapping ("/live")
-    public String live() {
-        return "live";
-    }
-
-    @GetMapping ("/tickets")
-    public String tickets() {
-        return "tickets";
+    public String getGallery() { return "gallery";
     }
 
     @GetMapping ("/zoo")
-    public String zoo() {
+    public String getZoo() {
         return "zoo";
     }
 
     @GetMapping("1")
     public String test() { return "1";
     }
+
+
 
 }

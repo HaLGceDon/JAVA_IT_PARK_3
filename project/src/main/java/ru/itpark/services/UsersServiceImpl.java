@@ -2,6 +2,7 @@ package ru.itpark.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.itpark.forms.NamesForm;
 import ru.itpark.models.User;
 import ru.itpark.repositories.UsersRepository;
 
@@ -29,4 +30,10 @@ public class UsersServiceImpl implements UsersService {
     return usersRepository.findOne(userId);
   }
 
+  @Override
+  public void update(Long userId, NamesForm form) {
+    User user = usersRepository.findOne(userId);
+    form.update(user);
+    usersRepository.save(user);
+  }
 }

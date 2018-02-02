@@ -1,9 +1,11 @@
 package ru.itpark.services;
 
 
-public interface RegistrationService <T> {
+import ru.itpark.forms.RegistrationForm;
 
-  String registration(T form);
+public interface RegistrationService {
+
+    String registration(RegistrationForm form);
 
     boolean confirm(String confirmString);
 }
