@@ -8,9 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.RegistrationForm;
-import ru.itpark.models.Role;
-import ru.itpark.models.State;
-import ru.itpark.models.User;
+import ru.itpark.models.User.Role;
+import ru.itpark.models.User.State;
+import ru.itpark.models.User.User;
 import ru.itpark.repositories.UsersRepository;
 
 import javax.mail.internet.MimeMessage;
@@ -65,7 +65,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 
     usersRepository.save(newUser);
 
-    String text = "<a href=\"https://localhost/confirm/" +newUser.getConfirmCode()+ "\">Пройдите по ссылке</a>";
+    String text = "<p>Вы успешно зарегестрировались на сайте Zoo, для подтверждения регистрации пройдите по ссылке:</p>" +
+                  "<br> <a href=\"http://localhost/confirm/" +newUser.getConfirmCode()+ "\">Подтвердить</a>";
 
     MimeMessage message = javaMailSender.createMimeMessage();
     message.setContent(text, "text/html");

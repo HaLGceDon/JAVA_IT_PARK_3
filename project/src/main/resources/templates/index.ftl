@@ -1,4 +1,7 @@
-
+<#import 'spring.ftl' as spring>
+<@spring.bind "model"/>
+<!doctype html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Zoo</title>
@@ -22,10 +25,16 @@
                 <span>Узнавайте новое о животных</span>
             </li>
         </ul>
-        <a href="/tickets">Купить билеты / Войти</a>
+
+        <#if model.user?? >  <a href="/logout">Выйти из профиля</a>
+        <#else > <a href="/tickets">Купить билеты / Войти</a>
+        </#if>
+
         <ul id="navigation">
             <li id="link1" class="selected"><a href="/">  Home  </a></li>
-            <li id="link2"><a href="/profile">Профиль</a></li>
+              <#if model.user?? >  <li id="link2"><a href="/profile">Профиль</a></li></a>
+              <#else > <li id="link2"> <a href="/login">Вход</a></li></a>
+             </#if>
             <li id="link3"><a href="/registration">Регистрация</a></li>
             <li id="link4"><a href="/tickets"> Билеты </a></li>
             <li id="link5"><a href="/events"> События </a></li>

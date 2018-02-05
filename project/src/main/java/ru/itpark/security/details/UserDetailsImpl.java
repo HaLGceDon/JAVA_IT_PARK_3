@@ -3,8 +3,8 @@ package ru.itpark.security.details;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.itpark.models.State;
-import ru.itpark.models.User;
+import ru.itpark.models.User.State;
+import ru.itpark.models.User.User;
 
 import java.util.Collection;
 import java.util.Collections;

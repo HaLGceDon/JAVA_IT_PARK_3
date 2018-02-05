@@ -12,7 +12,7 @@
             <li id="link4"><a href="/tickets">Билеты</a></li>
             <li id="link5"><a href="/events">События</a></li>
             <li id="link6"><a href="/gallery">Галерея</a></li>
-            <li id="link7"><a href="/contact">Контакты</a></li>
+            <li id="link7" class="selected"><a href="/contact">Контакты</a></li>
         </ul>
     </div>
 

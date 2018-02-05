@@ -9,12 +9,13 @@
 </head>
 <body>
 <div id="page">
-<#include 'common/header_begin.ftl'/>
+<#include 'common/header_begin_clear.ftl'/>
+
     <div id="content">
 
         <div id="section2">
-            <#if model.result == true>  <h2>Оплачено</h2> </#if>
-            <#if model.result == false>  <h2>Ошибка. <a href="/buy_tickets_pay"><p> Назад </p></a></h2> </#if>
+            <p>Вы совершили покупку, информация о покупке направлена вам на почту: ${model.email} </p>
+            <p>Вы так же можете посмотреть подробности в личном кабинете</p><a href="/profile"><b> Профиль </b></a></h2>
         </div>
 
     <#include 'common/header_animals.ftl'/>

@@ -1,4 +1,6 @@
 <#ftl encoding='UTF-8'>
+<#import 'spring.ftl' as spring>
+<@spring.bind "model"/>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,8 +24,11 @@
                   name="buyForm"
                   method="post"
                   action="/buy_tickets">
+                <b>Взрослый билет - ${model.adultPrice} рублей:</b>
                 <br>
                 <input type="number" value="0" name="quantityAdult" placeholder="Взрослые билеты"/>
+                <br>
+                <b>Детский билет - ${model.kidsPrice} рублей:</b>
                 <br>
                 <input type="number" value="0" name="quantityKids" placeholder="Детские билеты"/>
                 <br>
@@ -40,11 +45,11 @@
 
             <li>
                 <p>Вы выбрали:</p>
-            <div><img src="images/ticket-lion.jpg" alt=""/></div>
                 <p>Безлимитный на весь день</p>
-                <p> Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымыщленный зоопарк.</p>
-                <span>Взрослый - 600</span>
-                <span>Детский - 300</span>
+            <div><img src="images/ticket-lion.jpg" alt=""/></div>
+                <p> Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымышленный зоопарк.</p>
+                <br>
+                <span>Детский билет - ${model.kidsPrice} рублей</span>
             </li>
 
                 <li>

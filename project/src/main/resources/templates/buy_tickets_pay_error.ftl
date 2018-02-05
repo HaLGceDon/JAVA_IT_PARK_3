@@ -14,6 +14,7 @@
     <div id="content">
 
         <div class="section2">
+            <h2>При оплате произошла ошибка,<br> попробуйте еще раз!</h2>
             <h2>Оплатить ${model.price} рублей</h2>
             <form class="form-style-4" title="Оплата"
                   name="payForm"
@@ -24,13 +25,13 @@
                 <input type="hidden" value="${model.price}" name="price">
                 <p>
                     <b>Номер карты</b><input type="text"  name="cardNumber" maxlength="20" value="4"/>
-                <br>
+                    <br>
                     <b>Месяц</b><input type="text"  name="cardMonth" size="10" maxlength="2" value="0"/>
 
                     <b>Год</b><input type="text"  name="cardYear" size="9" maxlength="2" value="0"/>
-                <br>
-                    <p>CVC код<input type="text"  name="cardCvc" size="8" maxlength="3" value="0"/>
-                <br>
+                    <br>
+                <p>CVC код<input type="text"  name="cardCvc" size="8" maxlength="3" value="0"/>
+                    <br>
                     <b>Имя Фамилия</b><input type="text"  name="cardHolder" size="19" value="_"/>
                 </p>
                 <br>
@@ -39,7 +40,6 @@
             <a href="/buy_tickets"> Назад </a>
 
         </div>
-
     <#include 'common/header_animals.ftl'/>
     </div>
 

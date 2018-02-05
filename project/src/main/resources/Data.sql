@@ -17,3 +17,24 @@ INSERT INTO public.users
         FROM users
         WHERE id = 1
 );
+
+INSERT INTO public.tickets
+(id, name, adult_price, kids_price)
+    SELECT
+      1,
+      'zooMain',
+      '600',
+      '300'
+    WHERE
+      NOT EXISTS(
+          SELECT id
+          FROM tickets
+          WHERE id = 1
+);
+
+CREATE TABLE IF NOT EXISTS persistent_logins (
+  username VARCHAR(64) NOT NULL,
+  series VARCHAR(64) PRIMARY KEY NOT NULL,
+  token VARCHAR(64) NOT NULL,
+  last_used TIMESTAMP NOT NULL
+)

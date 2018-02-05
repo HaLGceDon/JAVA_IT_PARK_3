@@ -9,37 +9,26 @@
 </head>
 <body>
 <div id="page">
-    <div id="header">
-        <a href="/" id="logo"><img src="images/logo-page.jpg" alt=""/></a>
-        <ul id="links">
-            <li class="first">
-                <h2><a href="/zoo">Live</a></h2>
-                <span>Получайте радость от визита</span>
-            </li>
-            <li>
-                <h2><a href="/zoo">Love</a></h2>
-                <span>Жертвуйте на помощь животным</span>
-            </li>
-            <li>
-                <h2><a href="/zoo">Learn</a></h2>
-                <span>Узнавайте новое о животных</span>
-            </li>
-        </ul>
-        <a href="/tickets" id="button">Купить билеты / Войти</a>
-        <ul id="navigation">
-            <li id="link1"><a href="/">  Home </a></li>
-            <li id="link2" class="selected"><a href="/profile">Профиль</a></li>
-            <li id="link3"><a href="/registration">Регистрация</a></li>
-            <li id="link4"><a href="/tickets"> Билеты </a></li>
-            <li id="link5"><a href="/events"> События </a></li>
-            <li id="link6""><a href="/gallery"> Галерея </a></li>
-            <li id="link7"><a href="/contact"> Контакты </a></li>
-        </ul>
-    </div>
+
+<#include 'common/header_begin.ftl'/>
     <div id="content">
+        <div id="section1">
+
+        <h2>Привет, ${model.user.name} ${model.user.surname}</h2>
+            <h2>Указан почтовый ящик - ${model.user.email}</h2>
+            <h2>Возраст - ${model.user.age}</h2>
+            <h2>Время регистрации на сайте: ${model.user.registrationTime}</h2>
+            <h2>Ваш профиль <#if model.user.state == "CONFIRMED"> подтвержден.<#else> не подтвержден.</#if></h2>
+
+
+
+        </div>
         <div id="section2">
 
-        <h2>Привет, ${model.user.name}</h2>
+            <a href="/profile_info"><img src="images/avatar.png" alt=""/></a>
+
+            <h2><a href="/profile_info_edit" >Изменить анкету</a></h2>
+            <h2><a href="/profile_buy_list">Список купленных билетов</a></h2>
 
         </div>
     <#include 'common/header_animals.ftl'/>

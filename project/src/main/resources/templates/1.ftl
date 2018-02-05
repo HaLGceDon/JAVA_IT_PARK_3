@@ -11,19 +11,8 @@
 </head>
 <body>
 
+<p>Вы успешно зарегестрировались на сайте Zoo, для подтверждения регистрации пройдите по ссылке:</p <br> <a href="http://localhost/confirm/" </a>Подтвердить
 
-<div id="container">
-    <form>
-        <label for="name">Логин:</label>
-        <input type="login">
-        <label for="username">Пароль:</label>
-        <p><a href="#">Забыли пароль?</a></p>
-        <input type="password">
-        <div id="lower">
-            <input type="submit" value="Войти">
-        </div>
-    </form>
-</div>
 </body>
 </html>
 	

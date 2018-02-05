@@ -9,13 +9,14 @@
 </head>
 <body>
 <div id="page">
-<#include 'common/header_begin.ftl'/>
+<#include 'common/header_begin_clear.ftl'/>
     <div id="content">
         <div class="section2">
-            <#if model.quantityAdult != 0> <p>Количество выбранных взрослых билетов: ${model.quantityAdult} -</p> <p> - ${model.quantityAdult*600} рублей. </p> </#if>
-            <#if model.quantityKids != 0>  <p>Количество выбранных  детских билетов: ${model.quantityKids}  -</p> <p> - ${model.quantityKids*300} рублей.. </p> </#if>
+            <#if model.quantityAdult != 0> <p>Количество выбранных взрослых билетов: ${model.quantityAdult} -</p> <p> - ${model.adultBuySum} рублей. </p> </#if>
+            <#if model.quantityKids != 0>  <p>Количество выбранных  детских билетов: ${model.quantityKids}  -</p> <p> - ${model.kidsBuySum} рублей.. </p> </#if>
+                <#if model.buySum !=0 ><p>Итого: ${model.buySum} рублей.</p></#if>
 
-            <#if model.quantity == 0> <h1>Вы не выбрали билеты. <a href="/buy_tickets">Вернуться назад</a> </h1>
+            <#if model.quantity == 0> <h1>Вы не выбрали билеты. <a href="/buy_tickets"> Вернуться назад</a> </h1>
             <#else > <ul>
                 <form class="form-style-4" title="Покупка"
                       name="buyForm"

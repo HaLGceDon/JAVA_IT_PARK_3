@@ -4,10 +4,12 @@ import lombok.Data;
 
 @Data
 public class PayForm {
-    private int price;
-    private int cardNumber;
+    private long cardNumber;
     private int cardMonth;
     private int cardYear;
-    private int cardCvc;
+    private  int cardCvc;
     private String cardHolder;
+    private int price;
+    private int quantityAdult;
+    private int quantityKids;
 }

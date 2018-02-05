@@ -1,10 +1,10 @@
-package ru.itpark.models;
+package ru.itpark.models.User;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+
 @Entity
 @Table(name = "users")
 @Getter

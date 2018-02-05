@@ -9,7 +9,8 @@
 </head>
 <body>
 <div id="page">
-<#include 'common/header_begin.ftl'/>
+<#include 'common/header_begin_clear.ftl'/>
+
 
     <div id="content">
         <div class="selection2">

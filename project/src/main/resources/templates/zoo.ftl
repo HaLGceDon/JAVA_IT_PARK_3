@@ -1,4 +1,6 @@
 <#ftl encoding='UTF-8'>
+<#import 'spring.ftl' as spring>
+<@spring.bind "model"/>
 <html>
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
