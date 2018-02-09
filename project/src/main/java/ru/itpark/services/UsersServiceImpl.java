@@ -3,10 +3,12 @@ package ru.itpark.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.NamesForm;
+import ru.itpark.models.User.State;
 import ru.itpark.models.User.User;
 import ru.itpark.repositories.UsersRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -36,4 +38,16 @@ public class UsersServiceImpl implements UsersService {
     form.update(user);
     usersRepository.save(user);
   }
+
+    @Override
+    public boolean deleteUser(String login) {
+        Optional<User> userOptional = usersRepository.findByLogin(login);
+        if (userOptional.isPresent()) {
+          User user = userOptional.get();
+          user.setState(State.DELETED);
+          usersRepository.save(user);
+          return true;
+        }
+        return false;
+    }
 }

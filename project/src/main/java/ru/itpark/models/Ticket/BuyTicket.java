@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "buy_tickets")
+@Table
 @Getter
 @Setter
 @AllArgsConstructor
@@ -37,5 +37,4 @@ public class BuyTicket {
 
     @Enumerated(value = EnumType.STRING)
     private TicketState ticketState;
-
 }

@@ -12,8 +12,8 @@
 <#include 'common/header_begin.ftl'/>
     <div id="content">
         <div id="section2">
-
-        <form class="form-style-4" title="Редактирование"
+        <h2>Редактирование данных профиля</h2>
+        <form title="Редактирование"
               name="namesForm"
               method="post"
               action="/profile_info_edit">
@@ -30,8 +30,16 @@
             <p>Возраст</p>
                 <input type="number"  name="age" value="${model.user.age}"/>
             <br>
-            <input type="submit" placeholder="Изменить">
+            <input type="submit" value="Сохранить изменеия">
         </form>
+            <br>
+            <p>Чтобы изменить пароль нажмите нижнюю кнопку и следуйте инструкциям:</p>
+            <form title="password"
+                  name="passwordRecovery"
+                  method="post" action="/password_recovery">
+                <input type="hidden" name="email" value="${model.user.email}">
+                <input type="submit" value="Изменить пароль">
+            </form>
         </div>
     <#include 'common/header_animals.ftl'/>
     </div>

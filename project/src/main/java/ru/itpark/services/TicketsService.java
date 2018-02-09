@@ -8,17 +8,17 @@ import ru.itpark.models.Ticket.BuyTicket;
 import java.util.List;
 
 public interface TicketsService {
-    BuyTicket getBuyTicketsZooMain(BuyForm form);
+    BuyTicket getBuyTickets(BuyForm form);
 
-    List<BuyTicket> getBuyTicketByUser(Authentication authentication);
+    List<BuyTicket> getBuyTicketsByUser(Authentication authentication);
 
-    int buyAdultTicketsSumZooMain(BuyForm buyForm);
+    int buyAdultTicketsSum(BuyForm buyForm);
 
-    int buyKidsTicketsSumZooMain(BuyForm buyForm);
+    int buyKidsTicketsSum(BuyForm buyForm);
 
-    int getAdultBuyPriceZooMain();
+    int getAdultBuyPrice();
 
-    int getKidsBuyPriceZooMain();
+    int getKidsBuyPrice();
 
 
     BuyTicket payTickets(PayForm payForm,

@@ -26,11 +26,11 @@
                   action="/buy_tickets">
                 <b>Взрослый билет - ${model.adultPrice} рублей:</b>
                 <br>
-                <input type="number" value="0" name="quantityAdult" placeholder="Взрослые билеты"/>
+                <input type="number" value="0" name="quantityAdult" required placeholder="Взрослые билеты"/>
                 <br>
                 <b>Детский билет - ${model.kidsPrice} рублей:</b>
                 <br>
-                <input type="number" value="0" name="quantityKids" placeholder="Детские билеты"/>
+                <input type="number" value="0" name="quantityKids" required placeholder="Детские билеты"/>
                 <br>
                 <input type="submit" value="Подтвердить">
             </form>

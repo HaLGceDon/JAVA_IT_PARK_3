@@ -1,6 +1,6 @@
 
 <div id="header">
-    <a href="index.html" id="logo"><img src="images/logo-page.jpg" alt=""/></a>
+    <a href="/" id="logo"><img src="images/logo-page.jpg" alt=""/></a>
     <ul id="links">
         <li class="first">
             <h2><a href="/zoo">Live</a></h2>

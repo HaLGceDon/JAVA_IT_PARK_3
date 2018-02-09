@@ -7,7 +7,7 @@ INSERT INTO public.users
     '1',
     'admin',
     '$2a$10$mMZ6ZTpZ4GMj386kVZqjP.436D6BbbZ7Va4K5.hXAp2oIpK4n33Iq',
-    'admi@admin.com',
+    'admin@admin.com',
     '2018-01-01 21:25:57.990000',
     'CONFIRMED',
     'ADMIN'
@@ -22,7 +22,7 @@ INSERT INTO public.tickets
 (id, name, adult_price, kids_price)
     SELECT
       1,
-      'zooMain',
+      'basic',
       '600',
       '300'
     WHERE

@@ -4,9 +4,12 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.itpark.forms.PasswordForm;
+import ru.itpark.forms.PasswordRecoveryForm;
 import ru.itpark.forms.RegistrationForm;
 import ru.itpark.models.User.Role;
 import ru.itpark.models.User.State;
@@ -14,6 +17,7 @@ import ru.itpark.models.User.User;
 import ru.itpark.repositories.UsersRepository;
 
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,7 +28,6 @@ public class RegistrationServiceImpl implements RegistrationService {
 
   @Autowired
   private UsersRepository usersRepository;
-  
 
 
   @Autowired
@@ -87,7 +90,6 @@ public class RegistrationServiceImpl implements RegistrationService {
     if (userOptional.isPresent()) {
       User user = userOptional.get();
 
-
       user.setConfirmCode(null);
       user.setState(State.CONFIRMED);
       usersRepository.save(user);
@@ -96,4 +98,57 @@ public class RegistrationServiceImpl implements RegistrationService {
     }
     return false;
   }
+
+  @SneakyThrows
+  @Override
+  public String passwordRecovery(PasswordRecoveryForm form) {
+    Optional<User> userCheckEmail = usersRepository.findByEmail(form.getEmail());
+    if (!userCheckEmail.isPresent()) {
+      return "bad_email";
+    }
+      String passwordRecoveryCode = UUID.randomUUID().toString().replace("-","");
+
+
+      User user = userCheckEmail.get();
+      user.setPasswordRecoveryCode(passwordRecoveryCode);
+      usersRepository.save(user);
+
+      String text = "<p>Ваш логин на сайте Zoo - '" + user.getLogin() + "'.<br> Для восстановления пароля пройдите по ссылке:</p>" +
+              " <a href=\"http://localhost/password_confirm/" +user.getPasswordRecoveryCode()+ "\">Изменить пароль</a>";
+
+      MimeMessage message = javaMailSender.createMimeMessage();
+      message.setContent(text, "text/html");
+      MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
+      messageHelper.setTo(user.getEmail());
+      messageHelper.setSubject("Восстановление пароля");
+      messageHelper.setText(text, true);
+
+      javaMailSender.send(message);
+
+      return user.getEmail();
+  }
+
+  @Override
+  public boolean confirmPasswordRecovery(String passwordRecoveryCode) {
+    Optional <User> userOptional
+            = usersRepository.findByPasswordRecoveryCode(passwordRecoveryCode);
+    return userOptional.isPresent();
+  }
+
+  @Override
+  public String changePassword(PasswordForm form, String passwordRecoveryCode) {
+    Optional <User> userOptional
+            = usersRepository.findByPasswordRecoveryCode(passwordRecoveryCode);
+    if (userOptional.isPresent()) {
+      User user = userOptional.get();
+      String hashPassword = encoder.encode(form.getPassword());
+      user.setPasswordRecoveryCode(null);
+      user.setHashPassword(hashPassword);
+      usersRepository.save(user);
+
+      return user.getLogin();
+    } else return "error";
+  }
+
+
 }

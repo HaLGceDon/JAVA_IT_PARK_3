@@ -12,29 +12,17 @@
 <#include 'common/header_begin.ftl'/>
     <div id="content">
         <div id="section2">
-
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Имя</th>
-                    <th>Общая цена</th>
-                    <th>Количество взрослых</th>
-                    <th>Количество детей</th>
-                    <th>Дата покупки</th>
-                    <th>Срок действия</th>
-                </tr>
+<p>Купленные билеты можно распечатать либо предьявить на экране вашего электронного устройства.</p>
+<#if model.noTickets == true >  <h2>Еще нет купленных билетов.</h2>
+<#else > <h2>Купленные билеты:</h2>
+</#if>
             <#list model.tickets as buyTicket>
-                <tr>
-                    <td>${buyTicket.id}</td>
-                    <td>${buyTicket.ticketsName}</td>
-                    <td>${buyTicket.price}</td>
-                    <td>${buyTicket.quantityAdult}</td>
-                    <td>${buyTicket.quantityKids}</td>
-                    <td>${buyTicket.buyTime}</td>
-                    <td>${buyTicket.buyEndTime}</td>
-                </tr>
+                <br>
+                <p>Имя - ${buyTicket.ticketsName}, Общая цена: ${buyTicket.price}. Код - ${buyTicket.ticketsCode}</p>
+                <p>Количество взрослых билетов - ${buyTicket.quantityAdult}, Количество детских билетов - ${buyTicket.quantityKids}</p>
+                <p>Дата покупки:${buyTicket.buyTime.toLocalDate()}, Срок действия до:${buyTicket.buyEndTime.toLocalDate()}.</p>
+                <br>
             </#list>
-            </table>
 
 
         </div>

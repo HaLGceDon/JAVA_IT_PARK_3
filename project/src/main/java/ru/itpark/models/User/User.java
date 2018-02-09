@@ -3,6 +3,7 @@ package ru.itpark.models.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,6 +28,7 @@ public class User {
   private String email;
   private LocalDateTime registrationTime;
   private String confirmCode;
+  private String passwordRecoveryCode;
 
   @Enumerated(value = EnumType.STRING)
   private State state;

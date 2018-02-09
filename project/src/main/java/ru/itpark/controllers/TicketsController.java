@@ -25,6 +25,8 @@ public class TicketsController {
     @Autowired
     private AuthenticationService authenticationService;
 
+    private BuyTicket buyTicket;
+
     @GetMapping ("/tickets")
     public String getTickets(@ModelAttribute("model") ModelMap model,
                              Authentication authentication) {
@@ -33,16 +35,16 @@ public class TicketsController {
             model.addAttribute("user", user);
         }
         model.addAttribute("select", "tickets");
-        model.addAttribute("adultPrice", service.getAdultBuyPriceZooMain());
-        model.addAttribute("kidsPrice", service.getKidsBuyPriceZooMain());
+        model.addAttribute("adultPrice", service.getAdultBuyPrice());
+        model.addAttribute("kidsPrice", service.getKidsBuyPrice());
         return "tickets";
     }
 
     @GetMapping("/buy_tickets")
     public String getBuyTickets ( @ModelAttribute("model") ModelMap model) {
         model.addAttribute("select", "tickets");
-        model.addAttribute("adultPrice", service.getAdultBuyPriceZooMain());
-        model.addAttribute("kidsPrice", service.getKidsBuyPriceZooMain());
+        model.addAttribute("adultPrice", service.getAdultBuyPrice());
+        model.addAttribute("kidsPrice", service.getKidsBuyPrice());
        return "buy_tickets";
     }
 
@@ -52,29 +54,34 @@ public class TicketsController {
 
         if (buyForm.getQuantityAdult() > 0) {
             model.addAttribute("quantityAdult", buyForm.getQuantityAdult());
-        } else model.addAttribute("quantityAdult", 0);
+        } else {
+            model.addAttribute("quantityAdult", 0);
+        }
 
         if (buyForm.getQuantityKids() > 0) {
             model.addAttribute("quantityKids", buyForm.getQuantityKids());
-        } else  model.addAttribute("quantityKids", 0);
+        } else  {
+            model.addAttribute("quantityKids", 0);
+        }
 
 
         if (buyForm.getQuantityAdult() == 0 & buyForm.getQuantityKids() == 0) {
             model.addAttribute("quantity", 0);
         } else model.addAttribute("quantity", 1);
 
-        model.addAttribute("buySum", service.getBuyTicketsZooMain(buyForm).getPrice());
-        model.addAttribute("adultBuySum", service.buyAdultTicketsSumZooMain(buyForm));
-        model.addAttribute("kidsBuySum", service.buyKidsTicketsSumZooMain(buyForm));
+        model.addAttribute("buySum", service.getBuyTickets(buyForm).getPrice());
+        model.addAttribute("adultBuySum", service.buyAdultTicketsSum(buyForm));
+        model.addAttribute("kidsBuySum", service.buyKidsTicketsSum(buyForm));
+        buyTicket = service.getBuyTickets(buyForm);
         return  "buy_tickets_confirm";
     }
 
-    @PostMapping ("/buy_tickets_confirm")
-    public String buyTicketsConfirm (@ModelAttribute BuyForm form,
-                                     @ModelAttribute("model") ModelMap model) {
-        model.addAttribute("price",service.getBuyTicketsZooMain(form).getPrice());
-        model.addAttribute("quantityAdult", service.getBuyTicketsZooMain(form).getQuantityAdult());
-        model.addAttribute("quantityKids", service.getBuyTicketsZooMain(form).getQuantityKids());
+    @GetMapping ("/buy_tickets_pay")
+    public String buyTicketsConfirm (@ModelAttribute("model") ModelMap model) {
+        model.addAttribute("error", false);
+        model.addAttribute("price",buyTicket.getPrice());
+        model.addAttribute("quantityAdult", buyTicket.getQuantityAdult());
+        model.addAttribute("quantityKids", buyTicket.getQuantityKids());
         return "buy_tickets_pay";
     }
 
@@ -85,17 +92,20 @@ public class TicketsController {
                               @ModelAttribute("model") ModelMap model,
                               Authentication authentication){
 
+        payForm.setQuantityKids(buyTicket.getQuantityKids());
+        payForm.setQuantityAdult(buyTicket.getQuantityAdult());
+        payForm.setPrice(buyTicket.getPrice());
         User user = service.payTickets(payForm, authentication).getUser();
-
         if (user != null) {
             String email = user.getEmail();
             model.addAttribute("email", email);
             return "buy_tickets_pay_confirm";
         }else {
-            model.addAttribute("price",service.payTickets(payForm, authentication).getPrice());
-            model.addAttribute("quantityAdult", service.payTickets(payForm, authentication).getQuantityAdult());
-            model.addAttribute("quantityKids", service.payTickets(payForm, authentication).getQuantityKids());
-            return "buy_tickets_pay_error";
+            model.addAttribute("error", true);
+            model.addAttribute("price",buyTicket.getPrice());
+            model.addAttribute("quantityAdult", buyTicket.getQuantityAdult());
+            model.addAttribute("quantityKids", buyTicket.getQuantityKids());
+            return "buy_tickets_pay";
         }
     }
 
@@ -106,9 +116,11 @@ public class TicketsController {
         User user = authenticationService.getUserByAuthentication(authentication);
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
-
-        List<BuyTicket> tickets = service.getBuyTicketByUser(authentication);
+        List<BuyTicket> tickets = service.getBuyTicketsByUser(authentication);
         model.addAttribute("tickets", tickets);
+        if (tickets.size() > 0) {
+            model.addAttribute("noTickets", false);
+        } else  model.addAttribute("noTickets", true);
         return "profile_buy_list";
     }
 

@@ -18,16 +18,8 @@
 
             <#if model.quantity == 0> <h1>Вы не выбрали билеты. <a href="/buy_tickets"> Вернуться назад</a> </h1>
             <#else > <ul>
-                <form class="form-style-4" title="Покупка"
-                      name="buyForm"
-                      method="post"
-                      action="/buy_tickets_confirm">
-                    <input type="hidden" value="${model.quantityAdult}" name="quantityAdult"/>
-                    <input type="hidden" value="${model.quantityKids}" name="quantityKids"/>
-                    <input type="submit" value="* Подтвердить и оплатить">
-                </form>
 
-
+                      <p> <a href="/buy_tickets_pay"> * Подтвердить и перейти к оплате</a></p>
                       <p> <a href="/buy_tickets"> <- Вернуться назад</a></p>
 
                     </ul>

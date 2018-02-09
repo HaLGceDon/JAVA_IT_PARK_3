@@ -1,5 +1,6 @@
 package ru.itpark.services;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -8,9 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.BuyForm;
 import ru.itpark.forms.PayForm;
+import ru.itpark.models.Ticket.Tickets;
 import ru.itpark.models.Ticket.BuyTicket;
 import ru.itpark.models.Ticket.TicketState;
-import ru.itpark.models.Ticket.Tickets;
 import ru.itpark.models.User.User;
 import ru.itpark.repositories.BuyTicketRepository;
 import ru.itpark.repositories.TicketsRepository;
@@ -37,6 +38,8 @@ public class TicketsServiceImpl implements TicketsService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+
+
     @SneakyThrows
     @Override
     public BuyTicket payTickets(PayForm payForm,
@@ -47,7 +50,7 @@ public class TicketsServiceImpl implements TicketsService {
                 & payForm.getCardHolder() != null
                 & payForm.getCardCvc() != 0){
 
-            Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
+            Tickets tickets = ticketsRepository.findTicketsByName("basic");
             LocalDateTime buyTime = LocalDateTime.now();
             String ticketCode = UUID.randomUUID().toString().replace("-","");
             User user = authenticationService.getUserByAuthentication(authentication);
@@ -56,7 +59,7 @@ public class TicketsServiceImpl implements TicketsService {
                     .buyTime(buyTime)
                     .buyEndTime(buyTime.plusMonths(3))
                     .ticketsCode(ticketCode)
-                    .ticketsName("zooMain")
+                    .ticketsName(tickets.getName())
                     .ticketState(TicketState.PAID)
                     .user(user)
                     .quantityAdult(payForm.getQuantityAdult())
@@ -84,21 +87,20 @@ public class TicketsServiceImpl implements TicketsService {
             return buyTicket;
 
         }else{
-            BuyTicket errorTickets = BuyTicket.builder()
+            return BuyTicket.builder()
                     .ticketState(TicketState.NOT_PAID)
                     .quantityAdult(payForm.getQuantityAdult())
                     .quantityKids(payForm.getQuantityKids())
                     .price(payForm.getPrice())
                     .build();
-            return errorTickets;
         }
     }
 
 
     @Override
-    public BuyTicket getBuyTicketsZooMain(BuyForm form) {
-        Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
-        int price = form.getQuantityKids()*tickets.getKidsPrice() + form.getQuantityAdult()*tickets.getAdultPrice();
+    public BuyTicket getBuyTickets(BuyForm form) {
+        Tickets tickets = ticketsRepository.findTicketsByName("basic");
+        int price = form.getQuantityKids()* tickets.getKidsPrice() + form.getQuantityAdult()* tickets.getAdultPrice();
         return BuyTicket.builder()
                 .price(price)
                 .quantityAdult(form.getQuantityAdult())
@@ -107,35 +109,32 @@ public class TicketsServiceImpl implements TicketsService {
     }
 
     @Override
-    public List<BuyTicket> getBuyTicketByUser(Authentication authentication) {
+    public List<BuyTicket> getBuyTicketsByUser(Authentication authentication) {
         User user = authenticationService.getUserByAuthentication(authentication);
-        List<BuyTicket> list = buyTicketRepository.findBuyTicketByUser(user);
-        return list;
+        return buyTicketRepository.findBuyTicketByUser(user);
     }
 
     @Override
-    public int buyAdultTicketsSumZooMain(BuyForm buyForm){
-        Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
-        int result = buyForm.getQuantityAdult()*tickets.getAdultPrice();
-        return result;
+    public int buyAdultTicketsSum(BuyForm buyForm){
+        Tickets tickets = ticketsRepository.findTicketsByName("basic");
+        return buyForm.getQuantityAdult()* tickets.getAdultPrice();
     }
 
     @Override
-    public int buyKidsTicketsSumZooMain(BuyForm buyForm){
-        Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
-        int result = buyForm.getQuantityKids()*tickets.getKidsPrice();
-        return result;
+    public int buyKidsTicketsSum(BuyForm buyForm){
+        Tickets tickets = ticketsRepository.findTicketsByName("basic");
+        return buyForm.getQuantityKids()* tickets.getKidsPrice();
     }
 
     @Override
-    public int getAdultBuyPriceZooMain() {
-        Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
+    public int getAdultBuyPrice() {
+        Tickets tickets = ticketsRepository.findTicketsByName("basic");
         return tickets.getAdultPrice();
     }
 
     @Override
-    public int getKidsBuyPriceZooMain() {
-        Tickets tickets = ticketsRepository.findTicketsByName("zooMain");
+    public int getKidsBuyPrice() {
+        Tickets tickets = ticketsRepository.findTicketsByName("basic");
         return tickets.getKidsPrice();
     }
 

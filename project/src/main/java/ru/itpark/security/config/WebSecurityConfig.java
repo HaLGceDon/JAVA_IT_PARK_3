@@ -38,9 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/zoo/**").permitAll()
             .antMatchers("/events/**").permitAll()
             .antMatchers("/1/**").permitAll()
+            .antMatchers("/password_recovery/**").permitAll()
+            .antMatchers("/password_recovery_confirm/**").permitAll()
+            .antMatchers("/password_confirm/**").permitAll()
+            .antMatchers("/password_change/**").permitAll()
+            .antMatchers("/success_password_change/**").permitAll()
             .antMatchers("/profile/**").hasAnyAuthority("USER", "ADMIN") // разрешили админу и пользователям
             .antMatchers("/users/**").hasAnyAuthority("ADMIN") // только админу
-          .anyRequest().authenticated() // все остальные запросы требуют предварительной авторизации
+            .anyRequest().authenticated() // все остальные запросы требуют предварительной авторизации
             .and()
         .formLogin() // блок с формой входа
           .loginPage("/login")

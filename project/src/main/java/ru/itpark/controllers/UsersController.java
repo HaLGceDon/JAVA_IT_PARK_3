@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.itpark.forms.NamesForm;
+import ru.itpark.forms.RegistrationForm;
 import ru.itpark.models.User.User;
 import ru.itpark.repositories.UsersRepository;
 import ru.itpark.services.AuthenticationService;
@@ -61,11 +62,29 @@ public class UsersController {
     public String updateUser(NamesForm form,
                              Authentication authentication,
                              @ModelAttribute("model") ModelMap model) {
-        usersService.update(authenticationService.getUserByAuthentication(authentication).getId(), form);
         User user = authenticationService.getUserByAuthentication(authentication);
+        if (form.getAge() < 1 || form.getAge() > 120) {
+            form.setAge(usersService.getUser(user.getId()).getAge());
+        }
+        if (form.getName().length() < 3) {
+            form.setName(usersService.getUser(user.getId()).getName());
+        }
+        if (form.getSurname().length() < 3) {
+            form.setSurname(usersService.getUser(user.getId()).getSurname());
+        }
+        usersService.update(authenticationService.getUserByAuthentication(authentication).getId(), form);
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
         return "profile";
+    }
+
+    @PostMapping("/delete_user")
+    public String deleteUser(@ModelAttribute("model") ModelMap model,
+                             @ModelAttribute RegistrationForm form) {
+
+        boolean result = usersService.deleteUser(form.getLogin());
+        model.addAttribute("result", result);
+        return "users_delete_success";
     }
 
 }

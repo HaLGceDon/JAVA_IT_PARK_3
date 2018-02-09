@@ -10,4 +10,6 @@ public interface UsersService {
     User getUser(Long userId);
 
     void update(Long userId, NamesForm form);
+
+  boolean deleteUser(String login);
 }

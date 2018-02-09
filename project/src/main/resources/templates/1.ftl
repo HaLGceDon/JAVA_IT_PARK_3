@@ -1,24 +1,104 @@
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/reset_login.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="styles_login.css">
-    <link rel="icon" type="image/x-icon">
-    <link rel="shortcut icon"  type="image/x-icon">
+    <style>
+        td select,
+        td input {
+            width: 150px;
+        }
+
+        label {
+            display: block;
+        }
+
+        .error input,
+        .error textarea {
+            border: 1px solid red;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
 </head>
+
 <body>
 
-<p>Вы успешно зарегестрировались на сайте Zoo, для подтверждения регистрации пройдите по ссылке:</p <br> <a href="http://localhost/confirm/" </a>Подтвердить
+
+<form>
+    <table>
+        <tr>
+            <td>От кого</td>
+            <td>
+                <input name="from" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>Ваш пароль</td>
+            <td>
+                <input name="password" type="password">
+            </td>
+        </tr>
+        <tr>
+            <td>Повторите пароль</td>
+            <td>
+                <input name="password2" type="password">
+            </td>
+        </tr>
+
+    </table>
+
+    Сообщение:
+    <label>
+        <textarea name="message" style="display:block;width:400px;height:80px"></textarea>
+    </label>
+
+    <input type="button" onclick="validate(this.form)" value="Проверить">
+</form>
+
+<script>
+    function showError(container, errorMessage) {
+        container.className = 'error';
+        var msgElem = document.createElement('span');
+        msgElem.className = "error-message";
+        msgElem.innerHTML = errorMessage;
+        container.appendChild(msgElem);
+    }
+
+    function resetError(container) {
+        container.className = '';
+        if (container.lastChild.className == "error-message") {
+            container.removeChild(container.lastChild);
+        }
+    }
+
+    function validate(form) {
+        var elems = form.elements;
+
+        resetError(elems.from.parentNode);
+        if (!elems.from.value) {
+            showError(elems.from.parentNode, ' Укажите от кого.');
+        }
+
+        resetError(elems.password.parentNode);
+        if (!elems.password.value) {
+            showError(elems.password.parentNode, ' Укажите пароль.');
+        } else if (elems.password.value != elems.password2.value) {
+            showError(elems.password.parentNode, ' Пароли не совпадают.');
+        }
+
+        resetError(elems.to.parentNode);
+        if (!elems.to.value) {
+            showError(elems.to.parentNode, ' Укажите, куда.');
+        }
+
+
+    }
+</script>
+
 
 </body>
+
 </html>
-	
-	
-	
-	
-	
-		
-	

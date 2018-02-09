@@ -16,16 +16,19 @@
     <#if model.error == true>
         <h1>Неверно введены имя пользователя или пароль</h1>
     </#if>
-        <form class="form-style-4" title="Авторизация"
+        <form title="Авторизация"
               name="authorization"
               method="post"
               action="/login">
+            <b>Логин:</b>
             <br>
-            <input type="text" name="login" placeholder="Логин"/>
+            <input type="text" name="login" required placeholder="Логин"/>
             <br>
-            <input type="password" name="password" placeholder="Пароль"/>
+            <b>Пароль:</b>
+            <br>
+            <input type="password" name="password" required placeholder="Пароль"/>
             <p> <input type="checkbox" checked name="remember-me" > Запомнить</p>
-            <br>
+            <a href="/password_recovery"><p>Забыли пароль?</p></a>
             <input type="submit" value="Войти">
         </form>
         </div>

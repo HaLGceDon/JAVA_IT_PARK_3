@@ -7,3 +7,4 @@ public class BuyForm {
     private int quantityAdult;
     private int quantityKids;
 }
+

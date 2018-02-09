@@ -14,29 +14,29 @@
     <div id="content">
 
         <div class="section2">
+            <#if model.error == true ><h2>При оплате произошла ошибка,<br> попробуйте еще раз!</h2></#if>
             <h2>Оплатить ${model.price} рублей</h2>
-            <form class="form-style-4" title="Оплата"
+            <form title="Оплата"
                   name="payForm"
                   method="post"
                   action="/buy_tickets_pay">
-                <input type="hidden" value="${model.quantityAdult}" name="quantityAdult">
-                <input type="hidden" value="${model.quantityKids}" name="quantityKids">
-                <input type="hidden" value="${model.price}" name="price">
+                <br>
                 <p>
-                    <b>Номер карты</b><input type="text"  name="cardNumber" maxlength="20" value="4"/>
+                    <b>Номер карты</b><input type="text"  name="cardNumber" value="0000000000000000" required maxlength="19" />
                 <br>
-                    <b>Месяц</b><input type="text"  name="cardMonth" size="10" maxlength="2" value="0"/>
+                    <b>Месяц</b><input type="text"  name="cardMonth" required value="00" size="10" maxlength="2" />
 
-                    <b>Год</b><input type="text"  name="cardYear" size="9" maxlength="2" value="0"/>
+                    <b>Год</b><input type="text"  name="cardYear" required value="00" size="9" maxlength="2" />
                 <br>
-                    <p>CVC код<input type="text"  name="cardCvc" size="8" maxlength="3" value="0"/>
+                    <b>CVC код </b><input type="text"  name="cardCvc" required  value="000" size="8" maxlength="3" />
                 <br>
-                    <b>Имя Фамилия</b><input type="text"  name="cardHolder" size="19" value="_"/>
-                </p>
+                    <b>Имя Фамилия</b><input type="text"  name="cardHolder" value="null" required size="19" />
                 <br>
+                    <br>
                 <input type="submit" value="* Оплатить">
+                </p>
             </form>
-            <a href="/buy_tickets"> Назад </a>
+            <p> <a href="/buy_tickets"> Назад </a> </p>
 
         </div>
 

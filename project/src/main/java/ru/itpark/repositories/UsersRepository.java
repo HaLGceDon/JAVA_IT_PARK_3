@@ -14,6 +14,7 @@ public interface UsersRepository extends JpaRepository<User, Long> {
         List<User> findByOrderByName();
 
         Optional<User> findByConfirmCode(String confirmCode);
+        Optional<User> findByPasswordRecoveryCode(String code);
         Optional<User> findByLogin(String login);
         Optional<User> findByEmail(String email);
 }
