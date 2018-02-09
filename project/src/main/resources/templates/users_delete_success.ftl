@@ -15,8 +15,10 @@
     <div id="content">
         <div>
 
-            <#if model.result> Удаление пользователя успешно
-            <#else > Удаление неудалось
+        <#if model.result> <p>Удаление пользователя успешно</p>
+            <a href="/users">Назад</a>
+        <#else > <p>Удаление неудалось</p>
+            <a href="/users">Назад</a>
             </#if>
 
         </div>
