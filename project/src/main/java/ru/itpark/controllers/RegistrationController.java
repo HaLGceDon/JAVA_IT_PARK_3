@@ -5,15 +5,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import ru.itpark.forms.PasswordForm;
-import ru.itpark.forms.PasswordRecoveryForm;
 import ru.itpark.forms.RegistrationForm;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.RegistrationService;
-import ru.itpark.services.RegistrationServiceImpl;
-
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.sym.error;
 
 @Controller
 public class RegistrationController {
@@ -107,7 +102,7 @@ public class RegistrationController {
 
   @PostMapping("/password_recovery")
   public String passwordRecovery (@ModelAttribute("model") ModelMap model,
-                                  @ModelAttribute PasswordRecoveryForm form) {
+                                  @ModelAttribute RegistrationForm form) {
 
     model.addAttribute("select", "login");
     String email = service.passwordRecovery(form);
@@ -142,7 +137,7 @@ public class RegistrationController {
 
   @PostMapping("/password_change")
   public String changePassword (@ModelAttribute("model") ModelMap model,
-                                @ModelAttribute PasswordForm form) {
+                                @ModelAttribute RegistrationForm form) {
 
     model.addAttribute("select", "login");
     String login = service.changePassword(form, userPassRecovery.getPasswordRecoveryCode());

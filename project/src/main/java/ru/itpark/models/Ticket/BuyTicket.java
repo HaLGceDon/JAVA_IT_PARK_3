@@ -1,8 +1,8 @@
-package ru.itpark.models.Ticket;
+package ru.itpark.models.ticket;
 
 
 import lombok.*;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -36,5 +36,5 @@ public class BuyTicket {
     private int kidsPrice;
 
     @Enumerated(value = EnumType.STRING)
-    private TicketState ticketState;
+    private BuyTicketState ticketState;
 }

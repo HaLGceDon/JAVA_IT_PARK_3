@@ -1,18 +1,16 @@
 package ru.itpark.services;
 
-import lombok.Getter;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.itpark.forms.BuyForm;
 import ru.itpark.forms.PayForm;
-import ru.itpark.models.Ticket.Tickets;
-import ru.itpark.models.Ticket.BuyTicket;
-import ru.itpark.models.Ticket.TicketState;
-import ru.itpark.models.User.User;
+import ru.itpark.models.ticket.Tickets;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.BuyTicketState;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.BuyTicketRepository;
 import ru.itpark.repositories.TicketsRepository;
 
@@ -60,7 +58,7 @@ public class TicketsServiceImpl implements TicketsService {
                     .buyEndTime(buyTime.plusMonths(3))
                     .ticketsCode(ticketCode)
                     .ticketsName(tickets.getName())
-                    .ticketState(TicketState.PAID)
+                    .ticketState(BuyTicketState.PAID)
                     .user(user)
                     .quantityAdult(payForm.getQuantityAdult())
                     .quantityKids(payForm.getQuantityKids())
@@ -88,7 +86,7 @@ public class TicketsServiceImpl implements TicketsService {
 
         }else{
             return BuyTicket.builder()
-                    .ticketState(TicketState.NOT_PAID)
+                    .ticketState(BuyTicketState.NOT_PAID)
                     .quantityAdult(payForm.getQuantityAdult())
                     .quantityKids(payForm.getQuantityKids())
                     .price(payForm.getPrice())
@@ -98,7 +96,7 @@ public class TicketsServiceImpl implements TicketsService {
 
 
     @Override
-    public BuyTicket getBuyTickets(BuyForm form) {
+    public BuyTicket getBuyTickets(PayForm form) {
         Tickets tickets = ticketsRepository.findTicketsByName("basic");
         int price = form.getQuantityKids()* tickets.getKidsPrice() + form.getQuantityAdult()* tickets.getAdultPrice();
         return BuyTicket.builder()
@@ -115,13 +113,13 @@ public class TicketsServiceImpl implements TicketsService {
     }
 
     @Override
-    public int buyAdultTicketsSum(BuyForm buyForm){
+    public int buyAdultTicketsSum(PayForm buyForm){
         Tickets tickets = ticketsRepository.findTicketsByName("basic");
         return buyForm.getQuantityAdult()* tickets.getAdultPrice();
     }
 
     @Override
-    public int buyKidsTicketsSum(BuyForm buyForm){
+    public int buyKidsTicketsSum(PayForm buyForm){
         Tickets tickets = ticketsRepository.findTicketsByName("basic");
         return buyForm.getQuantityKids()* tickets.getKidsPrice();
     }

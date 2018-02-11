@@ -8,10 +8,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.itpark.forms.NamesForm;
 import ru.itpark.forms.RegistrationForm;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 import ru.itpark.services.AuthenticationService;
-import ru.itpark.services.TicketsService;
 import ru.itpark.services.UsersService;
 
 import java.util.List;

@@ -1,11 +1,12 @@
-package ru.itpark.models.ticket;
-
+package ru.itpark.models.event;
 
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
+@Table(name = "events")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,11 +14,15 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 @Builder
-public class Tickets {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    private int adultPrice;
-    private int kidsPrice;
+    private String text;
+    private LocalDate date;
+
+    @Enumerated(value = EnumType.STRING)
+    private EventState eventState;
 }

@@ -1,8 +1,8 @@
 package ru.itpark.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.itpark.models.Ticket.BuyTicket;
-import ru.itpark.models.User.User;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.user.User;
 
 import java.util.List;
 

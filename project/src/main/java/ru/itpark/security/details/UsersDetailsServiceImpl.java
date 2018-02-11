@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 
 import java.util.Optional;
@@ -22,6 +22,6 @@ public class UsersDetailsServiceImpl implements UserDetailsService {
     if (userOptional.isPresent()) {
       User user = userOptional.get();
       return new UserDetailsImpl(user);
-    } else throw new IllegalArgumentException("User not found by login");
+    } else throw new IllegalArgumentException("user not found by login");
   }
 }

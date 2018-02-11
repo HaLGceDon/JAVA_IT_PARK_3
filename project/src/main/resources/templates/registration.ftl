@@ -5,7 +5,7 @@
 	<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Регистрация</title>
-        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <link rel="stylesheet" href="/css/style.css" type="text/css" />
         <title>Регистрация</title>
         <link rel="stylesheet" href="css/styleRegError.css"/>
         <script type="text/javascript" src="/js/registrationValidate.js"></script>

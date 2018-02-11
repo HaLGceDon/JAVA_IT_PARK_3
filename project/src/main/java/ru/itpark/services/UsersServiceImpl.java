@@ -3,8 +3,8 @@ package ru.itpark.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.NamesForm;
-import ru.itpark.models.User.State;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.State;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 
 import java.util.List;
@@ -44,9 +44,13 @@ public class UsersServiceImpl implements UsersService {
         Optional<User> userOptional = usersRepository.findByLogin(login);
         if (userOptional.isPresent()) {
           User user = userOptional.get();
-          user.setState(State.DELETED);
-          usersRepository.save(user);
-          return true;
+          if (!user.getState().equals(State.DELETED)){
+            if (!user.getLogin().equals("admin")) {
+              user.setState(State.DELETED);
+              usersRepository.save(user);
+              return true;
+            }
+          }
         }
         return false;
     }

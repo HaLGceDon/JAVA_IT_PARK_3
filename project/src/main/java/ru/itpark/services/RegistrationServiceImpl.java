@@ -4,20 +4,16 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.itpark.forms.PasswordForm;
-import ru.itpark.forms.PasswordRecoveryForm;
 import ru.itpark.forms.RegistrationForm;
-import ru.itpark.models.User.Role;
-import ru.itpark.models.User.State;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.Role;
+import ru.itpark.models.user.State;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 
 import javax.mail.internet.MimeMessage;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
@@ -101,7 +97,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
   @SneakyThrows
   @Override
-  public String passwordRecovery(PasswordRecoveryForm form) {
+  public String passwordRecovery(RegistrationForm form) {
     Optional<User> userCheckEmail = usersRepository.findByEmail(form.getEmail());
     if (!userCheckEmail.isPresent()) {
       return "bad_email";
@@ -136,7 +132,7 @@ public class RegistrationServiceImpl implements RegistrationService {
   }
 
   @Override
-  public String changePassword(PasswordForm form, String passwordRecoveryCode) {
+  public String changePassword(RegistrationForm form, String passwordRecoveryCode) {
     Optional <User> userOptional
             = usersRepository.findByPasswordRecoveryCode(passwordRecoveryCode);
     if (userOptional.isPresent()) {

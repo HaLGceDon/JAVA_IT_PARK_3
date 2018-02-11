@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Zoo</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
 <body>
 <div id="page">
@@ -20,8 +20,8 @@
             <p>до 6 лет разрешен проход без</p>
             <p>билета в присутствии взрослых</p>
 
-            <form class="form-style-4" title="Покупка"
-                  name="buyForm"
+            <form title="Покупка"
+                  name="payForm"
                   method="post"
                   action="/buy_tickets">
                 <b>Взрослый билет - ${model.adultPrice} рублей:</b>

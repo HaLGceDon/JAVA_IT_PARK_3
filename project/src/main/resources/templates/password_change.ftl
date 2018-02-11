@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Zoo</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
 <body>
 <div id="page">
@@ -14,7 +14,7 @@
         <div>
 
             <h2>Введите новый пароль:</h2>
-            <form title="password" name="passwordForm"
+            <form title="password" name="registrationForm"
                   method="post"
                   action="/password_change">
                 <input type="password" name="password" required placeholder="password">

@@ -1,7 +1,7 @@
 package ru.itpark.services;
 
 import ru.itpark.forms.NamesForm;
-import ru.itpark.models.User.User;
+import ru.itpark.models.user.User;
 
 import java.util.List;
 

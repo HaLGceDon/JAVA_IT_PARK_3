@@ -1,9 +1,8 @@
-package ru.itpark.models.User;
+package ru.itpark.models.user;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

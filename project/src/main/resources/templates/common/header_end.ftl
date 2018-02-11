@@ -11,15 +11,13 @@
         <ul class="navigation">
             <li><a href="/">Домой</a></li>
             <li><a href="/tickets">Билеты</a></li>
-            <li><a href="/zoo">О зоопарке</a></li>
             <li><a href="/events">События</a></li>
             <li><a href="/gallery">Галерея</a></li>
-            <li><a href="/contact">Контакты</a></li>
         </ul>
         <ul>
-            <li><a href="/zoo">Получайте удовольствие от визита </a></li>
-            <li><a href="/zoo">Пожертвуйте на помощь животным</a></li>
-            <li><a href="/zoo">Узнавайте новое о животных</a></li>
+            <li><a href="/events">Получайте удовольствие от визита </a></li>
+            <li><a href="/events">Пожертвуйте на помощь животным</a></li>
+            <li><a href="/events">Узнавайте новое о животных</a></li>
         </ul>
     </div>
 </div>

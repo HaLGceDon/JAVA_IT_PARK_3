@@ -7,10 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.itpark.forms.BuyForm;
 import ru.itpark.forms.PayForm;
-import ru.itpark.models.Ticket.BuyTicket;
-import ru.itpark.models.User.User;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.TicketsService;
 
@@ -49,30 +48,30 @@ public class TicketsController {
     }
 
     @PostMapping("/buy_tickets")
-    public String buyTickets (@ModelAttribute BuyForm buyForm,
+    public String buyTickets (@ModelAttribute PayForm form,
                               @ModelAttribute("model") ModelMap model){
 
-        if (buyForm.getQuantityAdult() > 0) {
-            model.addAttribute("quantityAdult", buyForm.getQuantityAdult());
+        if (form.getQuantityAdult() > 0) {
+            model.addAttribute("quantityAdult", form.getQuantityAdult());
         } else {
             model.addAttribute("quantityAdult", 0);
         }
 
-        if (buyForm.getQuantityKids() > 0) {
-            model.addAttribute("quantityKids", buyForm.getQuantityKids());
+        if (form.getQuantityKids() > 0) {
+            model.addAttribute("quantityKids", form.getQuantityKids());
         } else  {
             model.addAttribute("quantityKids", 0);
         }
 
 
-        if (buyForm.getQuantityAdult() == 0 & buyForm.getQuantityKids() == 0) {
+        if (form.getQuantityAdult() == 0 & form.getQuantityKids() == 0) {
             model.addAttribute("quantity", 0);
         } else model.addAttribute("quantity", 1);
 
-        model.addAttribute("buySum", service.getBuyTickets(buyForm).getPrice());
-        model.addAttribute("adultBuySum", service.buyAdultTicketsSum(buyForm));
-        model.addAttribute("kidsBuySum", service.buyKidsTicketsSum(buyForm));
-        buyTicket = service.getBuyTickets(buyForm);
+        model.addAttribute("buySum", service.getBuyTickets(form).getPrice());
+        model.addAttribute("adultBuySum", service.buyAdultTicketsSum(form));
+        model.addAttribute("kidsBuySum", service.buyKidsTicketsSum(form));
+        buyTicket = service.getBuyTickets(form);
         return  "buy_tickets_confirm";
     }
 

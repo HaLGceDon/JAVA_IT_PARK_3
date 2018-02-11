@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Zoo</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
 </head>
 <body>
 <div id="page">
@@ -35,7 +35,7 @@
             <br>
             <p>Чтобы изменить пароль нажмите нижнюю кнопку и следуйте инструкциям:</p>
             <form title="password"
-                  name="passwordRecovery"
+                  name="registrationForm"
                   method="post" action="/password_recovery">
                 <input type="hidden" name="email" value="${model.user.email}">
                 <input type="submit" value="Изменить пароль">
