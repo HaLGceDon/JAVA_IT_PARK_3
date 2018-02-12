@@ -6,9 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itpark.forms.PayForm;
+import ru.itpark.forms.TicketForm;
 import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.Tickets;
 import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.TicketsService;
@@ -29,22 +32,28 @@ public class TicketsController {
     @GetMapping ("/tickets")
     public String getTickets(@ModelAttribute("model") ModelMap model,
                              Authentication authentication) {
+
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
         model.addAttribute("select", "tickets");
-        model.addAttribute("adultPrice", service.getAdultBuyPrice());
-        model.addAttribute("kidsPrice", service.getKidsBuyPrice());
-        return "tickets";
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets";
     }
 
-    @GetMapping("/buy_tickets")
-    public String getBuyTickets ( @ModelAttribute("model") ModelMap model) {
+
+
+    @GetMapping("/buy_tickets/{ticket_name}")
+    public String getBuyTickets ( @ModelAttribute("model") ModelMap model,
+                                  @PathVariable("ticket_name") String ticketName) {
+
         model.addAttribute("select", "tickets");
-        model.addAttribute("adultPrice", service.getAdultBuyPrice());
-        model.addAttribute("kidsPrice", service.getKidsBuyPrice());
-       return "buy_tickets";
+        Tickets ticket = service.getTicketByName(ticketName);
+        buyTicket = BuyTicket.builder().name(ticketName).build();
+        model.addAttribute("ticket", ticket);
+       return "ticketsPages/buy_tickets";
     }
 
     @PostMapping("/buy_tickets")
@@ -67,12 +76,13 @@ public class TicketsController {
         if (form.getQuantityAdult() == 0 & form.getQuantityKids() == 0) {
             model.addAttribute("quantity", 0);
         } else model.addAttribute("quantity", 1);
-
+        form.setName(buyTicket.getName());
+        buyTicket = service.getBuyTickets(form);
         model.addAttribute("buySum", service.getBuyTickets(form).getPrice());
         model.addAttribute("adultBuySum", service.buyAdultTicketsSum(form));
         model.addAttribute("kidsBuySum", service.buyKidsTicketsSum(form));
-        buyTicket = service.getBuyTickets(form);
-        return  "buy_tickets_confirm";
+
+        return  "ticketsPages/buy_tickets_confirm";
     }
 
     @GetMapping ("/buy_tickets_pay")
@@ -81,7 +91,7 @@ public class TicketsController {
         model.addAttribute("price",buyTicket.getPrice());
         model.addAttribute("quantityAdult", buyTicket.getQuantityAdult());
         model.addAttribute("quantityKids", buyTicket.getQuantityKids());
-        return "buy_tickets_pay";
+        return "ticketsPages/buy_tickets_pay";
     }
 
 
@@ -104,7 +114,7 @@ public class TicketsController {
             model.addAttribute("price",buyTicket.getPrice());
             model.addAttribute("quantityAdult", buyTicket.getQuantityAdult());
             model.addAttribute("quantityKids", buyTicket.getQuantityKids());
-            return "buy_tickets_pay";
+            return "ticketsPages/buy_tickets_pay";
         }
     }
 
@@ -116,12 +126,86 @@ public class TicketsController {
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
         List<BuyTicket> tickets = service.getBuyTicketsByUser(authentication);
-        model.addAttribute("tickets", tickets);
-        if (tickets.size() > 0) {
-            model.addAttribute("noTickets", false);
-        } else  model.addAttribute("noTickets", true);
-        return "profile_buy_list";
+        model.addAttribute("buyTickets", tickets);
+        return "ticketsPages/profile_buy_list";
     }
+
+    @PostMapping("/add_ticket")
+    public String newTicket(@ModelAttribute("model") ModelMap model,
+                            TicketForm ticketForm,
+                            Authentication authentication) {
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        String newTicket = service.newTicket(ticketForm);
+        model.addAttribute("newTicket", newTicket);
+        model.addAttribute("select", "tickets");
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets_new_ticket";
+    }
+
+
+    @GetMapping ("/tickets_redaction")
+    public String getTicketsRedaction(@ModelAttribute("model") ModelMap model,
+                                      Authentication authentication) {
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("select", "tickets");
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets_redaction";
+    }
+
+
+    @GetMapping ("/tickets_new_ticket")
+    public String getTicketsAdd(@ModelAttribute("model") ModelMap model,
+                                      Authentication authentication) {
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("select", "tickets");
+        return "ticketsPages/tickets_new_ticket";
+    }
+
+    @PostMapping("/delete_ticket")
+    public String deleteTicket (@ModelAttribute("model") ModelMap model,
+                                TicketForm ticketForm,
+                                Authentication authentication) {
+
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("select", "tickets");
+        String deleteTicked = service.deleteTicket(ticketForm.getName());
+        model.addAttribute("deleteTicked", deleteTicked);
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets_redaction";
+    }
+
+    @PostMapping("/update_ticket")
+    public String updateTicket(@ModelAttribute("model") ModelMap model,
+                               TicketForm ticketForm,
+                               Authentication authentication) {
+
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("select", "tickets");
+        service.updateTicket(ticketForm);
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets_redaction";
+    }
+
+
 
 
 

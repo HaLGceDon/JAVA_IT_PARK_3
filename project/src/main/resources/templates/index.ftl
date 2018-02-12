@@ -10,18 +10,18 @@
 <body>
 <div id="page">
     <div id="header">
-        <a href="/" id="logo"><img src="images/logo.jpg" alt=""/></a>
+        <a href="/" id="logo"><img src="../images/logo.jpg" alt=""/></a>
         <ul>
             <li class="first">
-                <h2><a href="/zoo">Live</a></h2>
+                <h2><a href="/events">Live</a></h2>
                 <span>Получайте радость от визита</span>
             </li>
             <li>
-                <h2><a href="/zoo">Love</a></h2>
+                <h2><a href="/events">Love</a></h2>
                 <span>Жертвуйте на помощь животным</span>
             </li>
             <li>
-                <h2><a href="/zoo">Learn</a></h2>
+                <h2><a href="/events">Learn</a></h2>
                 <span>Узнавайте новое о животных</span>
             </li>
         </ul>
@@ -39,9 +39,8 @@
             <li id="link4"><a href="/tickets"> Билеты </a></li>
             <li id="link5"><a href="/events"> События </a></li>
             <li id="link6"><a href="/gallery"> Галерея </a></li>
-            <li id="link7"><a href="/contact"> Контакты </a></li>
         </ul>
-        <img src="images/lion-family.jpg" alt="figure"/>
+        <img src="../images/lion-family.jpg" alt="figure"/>
         <div>
             <h1>Для родителей:</h1>
             <p>Вход детям до 6 лет - абсолютно бесплатно! Подросткам - скидки.</a></p>
@@ -70,7 +69,7 @@
         <div class="section2">
             <h2>Наш блог</h2>
             <p> В нашем зоопарке большое разнообразие животных.</p>
-            <a href="/tickets"><img src="images/dolphins.jpg" alt=""/></a>
+            <a href="/tickets"><img src="../images/dolphins.jpg" alt=""/></a>
             <ul>
                 <li>
                     <p>У нас есть дельфины,</p>
@@ -91,12 +90,12 @@
             <div id="section1">
                 <ul>
                     <li>
-                        <a href="/tickets"><img src="images/gorilla-2.jpg" alt=""/></a>
+                        <a href="/tickets"><img src="../images/gorilla-2.jpg" alt=""/></a>
                         <h4><a href="/tickets">Горилла Джек</a></h4>
                         <p>Любимец публики Джек.</p>
                     </li>
                     <li>
-                        <a href="/tickets"><img src="images/snake-2.jpg" alt=""/></a>
+                        <a href="/tickets"><img src="../images/snake-2.jpg" alt=""/></a>
                         <h4><a href="/tickets">Хладнокровные змеи</a></h4>
                         <p>Нет, это не твоя бывшая, это обитатели нашего террариума.</p>
                     </li>
@@ -105,7 +104,7 @@
             <div id="section2">
                 <ul>
                     <li>
-                        <a href="/tickets"><img src="images/butterfly-2.jpg" alt=""/></a>
+                        <a href="/tickets"><img src="../images/butterfly-2.jpg" alt=""/></a>
                         <h4><a href="/tickets">Прекрасные бабочки</a></h4>
                         <p>Редкие, красивые бабочки - недолгие гости нашего зоопарка.</p>
                     </li>
@@ -122,7 +121,7 @@
                 <h2>новости</h2>
                 <input type="text" value="ваша почта..." onblur="this.value=!this.value?'your email here...':this.value;" onfocus="this.select()" onclick="this.value='';" />
             </form>
-            <img src="images/penguin2.jpg" alt=""/>
+            <img src="../images/penguin2.jpg" alt=""/>
         </div>
     </div>
 <#include 'common/header_end.ftl'/>

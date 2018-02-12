@@ -29,17 +29,4 @@ public class Index {
 
 
 
-    @GetMapping ("/gallery")
-    public String getGallery(@ModelAttribute("model") ModelMap model,
-                             Authentication authentication) {
-        if (authentication != null) {
-            User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
-        }
-        model.addAttribute("select", "gallery");
-        return "gallery";
-    }
-
-
-
 }

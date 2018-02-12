@@ -2,7 +2,7 @@
 
 <div id="footer">
     <div>
-        <a href="/" class="logo"><img src="images/animal-kingdom.jpg" alt=""/></a>
+        <a href="/" class="logo"><img src="../images/animal-kingdom.jpg" alt=""/></a>
         <div>
             <p>Интересный зоопарк</p>
             <span>7777 777 777 / 666 666</span>

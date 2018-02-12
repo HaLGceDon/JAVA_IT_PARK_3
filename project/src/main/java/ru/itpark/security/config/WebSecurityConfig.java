@@ -33,11 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/js/**").permitAll()
             .antMatchers("/images/**").permitAll()
             .antMatchers("//**").permitAll()
-            .antMatchers("/gallery/**").permitAll()
             .antMatchers("/contact/**").permitAll()
             .antMatchers("/zoo/**").permitAll()
             .antMatchers("/events/**").permitAll()
-            .antMatchers("/1/**").permitAll()
             .antMatchers("/password_recovery/**").permitAll()
             .antMatchers("/password_recovery_confirm/**").permitAll()
             .antMatchers("/password_confirm/**").permitAll()
@@ -45,6 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/success_password_change/**").permitAll()
             .antMatchers("/profile/**").hasAnyAuthority("USER", "ADMIN") // разрешили админу и пользователям
             .antMatchers("/users/**").hasAnyAuthority("ADMIN") // только админу
+            .antMatchers("/tickets_redaction/**").hasAnyAuthority("ADMIN")
+            .antMatchers("/tickets_new_ticket/**").hasAnyAuthority("ADMIN")
+
             .anyRequest().authenticated() // все остальные запросы требуют предварительной авторизации
             .and()
         .formLogin() // блок с формой входа

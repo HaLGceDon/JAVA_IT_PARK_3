@@ -33,7 +33,7 @@ public class UsersController {
     public String getUsers(@ModelAttribute("model")ModelMap model) {
         List<User> users = usersRepository.findAll();
         model.addAttribute("users", users);
-        return "users";
+        return "profilePages/users";
     }
 
     @GetMapping(value = "/profile")
@@ -44,7 +44,7 @@ public class UsersController {
         User user = authenticationService.getUserByAuthentication(authentication);
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
-        return "profile";
+        return "profilePages/profile";
     }
 
     @GetMapping("/profile_info_edit")
@@ -54,7 +54,7 @@ public class UsersController {
         User user = authenticationService.getUserByAuthentication(authentication);
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
-        return "profile_info_edit";
+        return "profilePages/profile_info_edit";
     }
 
     @PostMapping("/profile_info_edit")
@@ -74,7 +74,7 @@ public class UsersController {
         usersService.update(authenticationService.getUserByAuthentication(authentication).getId(), form);
         model.addAttribute("user", user);
         model.addAttribute("select", "profile");
-        return "profile";
+        return "profilePages/profile";
     }
 
     @PostMapping("/delete_user")
@@ -83,7 +83,7 @@ public class UsersController {
 
         boolean result = usersService.deleteUser(form.getLogin());
         model.addAttribute("result", result);
-        return "users_delete_success";
+        return "profilePages/users_delete_success";
     }
 
 }

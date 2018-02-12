@@ -33,8 +33,8 @@ public class EventsController {
         }
         List<Event> events = eventsService.getEvents();
         model.addAttribute("events", events);
-        model.addAttribute("select", "event");
-        return "events";
+        model.addAttribute("select", "events");
+        return "eventsPages/events";
     }
 
     @PostMapping("/new_event")
@@ -44,13 +44,14 @@ public class EventsController {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
+
+        model.addAttribute("select", "events");
+        String newEventName = eventsService.newEvent(eventsForm);
+        model.addAttribute("newEventName", newEventName);
         }
         List<Event> events = eventsService.getEvents();
         model.addAttribute("events", events);
-        model.addAttribute("select", "event");
-        String newEventName = eventsService.newEvent(eventsForm);
-        model.addAttribute("newEventName", newEventName);
-        return "events";
+        return "eventsPages/events";
     }
 
     @PostMapping("/delete_event")
@@ -61,12 +62,13 @@ public class EventsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        List<Event> events = eventsService.getEvents();
-        model.addAttribute("events", events);
-        model.addAttribute("select", "event");
+
+        model.addAttribute("select", "events");
         String deleteEvent = eventsService.deleteEvent(eventDeleteForm.getId());
         model.addAttribute("deleteEvent", deleteEvent);
-        return "events";
+        List<Event> events = eventsService.getEvents();
+        model.addAttribute("events", events);
+        return "eventsPages/events";
     }
 
 }

@@ -12,4 +12,5 @@ public class PayForm {
     private int price;
     private int quantityAdult;
     private int quantityKids;
+    private String name;
 }

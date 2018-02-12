@@ -2,7 +2,9 @@ package ru.itpark.services;
 
 import org.springframework.security.core.Authentication;
 import ru.itpark.forms.PayForm;
+import ru.itpark.forms.TicketForm;
 import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.Tickets;
 
 import java.util.List;
 
@@ -16,11 +18,17 @@ public interface TicketsService {
 
     int buyKidsTicketsSum(PayForm buyForm);
 
-    int getAdultBuyPrice();
-
-    int getKidsBuyPrice();
-
 
     BuyTicket payTickets(PayForm payForm,
                          Authentication authentication);
+
+    List<Tickets> getTickets();
+
+    Tickets getTicketByName(String name);
+
+    String newTicket(TicketForm ticketForm);
+
+    String deleteTicket(String name);
+
+    void updateTicket(TicketForm ticketForm);
 }

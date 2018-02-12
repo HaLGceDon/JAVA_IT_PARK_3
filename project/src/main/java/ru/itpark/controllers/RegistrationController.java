@@ -37,7 +37,7 @@ public class RegistrationController {
         model.addAttribute("user", user);
       }
       model.addAttribute("select", "registration");
-      return "registration";
+      return "registrationPages/registration";
     }
     if (email.equals("bad_email")) {
       model.addAttribute("errorEmail", true);
@@ -47,11 +47,11 @@ public class RegistrationController {
         model.addAttribute("user", user);
       }
       model.addAttribute("select", "registration");
-      return "registration";
+      return "registrationPages/registration";
     }
 
     model.addAttribute("email", email);
-    return "success_page";
+    return "registrationPages/success_page";
   }
 
 
@@ -66,7 +66,7 @@ public class RegistrationController {
     }
     model.addAttribute("select", "registration");
 
-    return "registration";
+    return "registrationPages/registration";
   }
 
 
@@ -76,7 +76,7 @@ public class RegistrationController {
           @PathVariable("confirm-string") String confirmString) {
     boolean result = service.confirm(confirmString);
     model.addAttribute("result", result);
-    return "confirm_result_page";
+    return "registrationPages/confirm_result_page";
   }
 
 
@@ -90,14 +90,14 @@ public class RegistrationController {
     } else {
       model.addAttribute("error", false);
     }
-    return "login";
+    return "registrationPages/login";
   }
 
   @GetMapping("/password_recovery")
   public String getPasswordRecovery( @ModelAttribute("model") ModelMap model) {
     model.addAttribute("select", "login");
     model.addAttribute("error", false);
-    return "password_recovery";
+    return "registrationPages/password_recovery";
   }
 
   @PostMapping("/password_recovery")
@@ -108,10 +108,10 @@ public class RegistrationController {
     String email = service.passwordRecovery(form);
     if (email.equals("bad_email")) {
       model.addAttribute("error", true);
-      return "password_recovery";
+      return "registrationPages/password_recovery";
     }
     model.addAttribute("email", email);
-    return "password_success_recovery";
+    return "registrationPages/password_success_recovery";
 
   }
 
@@ -126,13 +126,13 @@ public class RegistrationController {
 
       userPassRecovery = User.builder().passwordRecoveryCode(confirmString).build();
     }
-    return "/password_recovery_confirm";
+    return "registrationPages/password_recovery_confirm";
   }
 
   @GetMapping("/password_change")
   public String getPasswordChange(@ModelAttribute("model") ModelMap model) {
     model.addAttribute("select", "login");
-    return "password_change";
+    return "registrationPages/password_change";
   }
 
   @PostMapping("/password_change")
@@ -142,9 +142,15 @@ public class RegistrationController {
     model.addAttribute("select", "login");
     String login = service.changePassword(form, userPassRecovery.getPasswordRecoveryCode());
     model.addAttribute("login", login);
-    return "success_password_change";
+    return "registrationPages/success_password_change";
 
   }
+
+  @GetMapping("/confirm_result_page_successfully")
+  public String successfullyRegistration () {
+    return "registrationPages/confirm_result_page_successfully";
+  }
+
 
 
 }

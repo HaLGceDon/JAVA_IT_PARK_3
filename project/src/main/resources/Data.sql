@@ -18,23 +18,62 @@ INSERT INTO public.users
         WHERE id = 1
 );
 
-INSERT INTO public.tickets
-(id, name, adult_price, kids_price)
-    SELECT
-      1,
-      'basic',
-      '600',
-      '300'
-    WHERE
-      NOT EXISTS(
-          SELECT id
-          FROM tickets
-          WHERE id = 1
-);
 
 CREATE TABLE IF NOT EXISTS persistent_logins (
   username VARCHAR(64) NOT NULL,
   series VARCHAR(64) PRIMARY KEY NOT NULL,
   token VARCHAR(64) NOT NULL,
   last_used TIMESTAMP NOT NULL
-)
+);
+
+
+INSERT INTO public.tickets
+(id, name, adult_price, kids_price, tittle, specification, picture_url)
+  SELECT
+    1,
+    'basic',
+    '600',
+    '300',
+    'Безлимитный на весь день',
+    'Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымышленный зоопарк.',
+    '../getAdminImages/ticket-lion.jpg'
+  WHERE
+    NOT EXISTS(
+        SELECT id
+        FROM tickets
+        WHERE id = 1
+    );
+
+INSERT INTO public.tickets
+(id, name, adult_price, kids_price, tittle, specification, picture_url)
+  SELECT
+    2,
+    'dolphin',
+    '800',
+    '400',
+    'Посещение дельфинария',
+    'Дельфины и другие морские животные с радостью обольют вас водой, и совсем недорого. Мороженое бесплатно.',
+    '../getAdminImages/ticket-dolphin.jpg'
+  WHERE
+    NOT EXISTS(
+        SELECT id
+        FROM tickets
+        WHERE id = 2
+    );
+
+INSERT INTO public.tickets
+(id, name, adult_price, kids_price, tittle, specification, picture_url)
+  SELECT
+    3,
+    'gorilla',
+    '700',
+    '350',
+    'Обучающее шоу с Гориллой',
+    'Оригинальное и позновательное шоу с гориллой по имени Джек для взрослых и детей. Горилла добрая, кусает только глупых, не смертельно.',
+    '../getAdminImages/ticket-gorilla.jpg'
+  WHERE
+    NOT EXISTS(
+        SELECT id
+        FROM tickets
+        WHERE id = 3
+    );
