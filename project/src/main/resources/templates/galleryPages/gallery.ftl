@@ -16,6 +16,7 @@
 			<div id="content">
 				<div id="gallery">
                     <#if model.user?? > <#if model.user.login == "admin">
+                    <h2>Выберите изображение для загрузки в галерею.</h2>
                         <input id="fileInput" type="file" placeholder="Выбрать файл">
                         <button name="uploadButton"
                                onclick="uploadFile(document.getElementById('fileInput')['files'][0])">Загрузить</button>
