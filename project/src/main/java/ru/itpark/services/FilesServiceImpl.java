@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.forms.GalleryForm;
-import ru.itpark.models.FileInfo;
+import ru.itpark.models.file.FileInfo;
 import ru.itpark.repositories.FilesInfoRepository;
 import ru.itpark.repositories.UsersRepository;
 

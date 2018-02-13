@@ -36,7 +36,7 @@ INSERT INTO public.tickets
     '300',
     'Безлимитный на весь день',
     'Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымышленный зоопарк.',
-    '../getAdminImages/ticket-lion.jpg'
+    '../images/ticket-lion.jpg'
   WHERE
     NOT EXISTS(
         SELECT id
@@ -53,7 +53,7 @@ INSERT INTO public.tickets
     '400',
     'Посещение дельфинария',
     'Дельфины и другие морские животные с радостью обольют вас водой, и совсем недорого. Мороженое бесплатно.',
-    '../getAdminImages/ticket-dolphin.jpg'
+    '../images/ticket-dolphin.jpg'
   WHERE
     NOT EXISTS(
         SELECT id
@@ -70,7 +70,7 @@ INSERT INTO public.tickets
     '350',
     'Обучающее шоу с Гориллой',
     'Оригинальное и позновательное шоу с гориллой по имени Джек для взрослых и детей. Горилла добрая, кусает только глупых, не смертельно.',
-    '../getAdminImages/ticket-gorilla.jpg'
+    '../images/ticket-gorilla.jpg'
   WHERE
     NOT EXISTS(
         SELECT id

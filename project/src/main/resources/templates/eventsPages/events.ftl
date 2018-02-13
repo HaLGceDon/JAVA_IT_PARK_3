@@ -46,9 +46,7 @@
                                             <br>
                                             <span>${event.date}</span>
                                             <br>
-                                            <br>
                                             <b>${event.name}</b>
-                                            <br>
                                             <br>
                                             <p>${event.text}</p>
                                             <br>
