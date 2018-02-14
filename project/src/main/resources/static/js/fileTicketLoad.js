@@ -1,4 +1,6 @@
 function uploadFile(file, ticketId) {
+    if (!file || !file.type.match(/image.*/)) return alert("Неправильный формат файла! Выберите JPG, GIF или PNG.");
+    if (file.size > 1048576) return alert("Размер файла слишком большой, допустимо не более 1 MB.");
     var formData = new FormData();
     formData.append("file", file);
     formData.append("destination", "ticket");

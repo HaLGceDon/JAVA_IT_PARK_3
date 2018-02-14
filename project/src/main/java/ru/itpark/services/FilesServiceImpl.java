@@ -118,6 +118,10 @@ public class FilesServiceImpl implements FilesService {
     @SneakyThrows
     public String deleteImage(GalleryForm galleryForm) {
         FileInfo image = filesInfoRepository.findOneByStorageName(galleryForm.getStorageName());
+        Tickets ticket = ticketsRepository.findTicketsByImage(image);
+        if (ticket != null){
+            ticket.setImage(null);
+        }
         filesInfoRepository.delete(image);
         Path path = Paths.get(storagePath, galleryForm.getStorageName());
         Files.deleteIfExists(path);
