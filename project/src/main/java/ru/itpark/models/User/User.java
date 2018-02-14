@@ -1,6 +1,7 @@
 package ru.itpark.models.user;
 
 import lombok.*;
+import ru.itpark.models.file.FileInfo;
 import ru.itpark.models.ticket.BuyTicket;
 
 import javax.persistence.*;

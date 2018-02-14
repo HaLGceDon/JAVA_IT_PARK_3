@@ -2,6 +2,7 @@ package ru.itpark.models.ticket;
 
 
 import lombok.*;
+import ru.itpark.models.file.FileInfo;
 
 import javax.persistence.*;
 
@@ -25,5 +26,8 @@ public class Tickets {
     private int kidsPrice;
     private String tittle;
     private String specification;
-    private String pictureUrl;
+
+    @OneToOne
+    @JoinColumn
+    private FileInfo image;
 }

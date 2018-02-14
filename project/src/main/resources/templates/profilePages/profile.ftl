@@ -23,7 +23,7 @@
             <p>Дата регистрации на сайте: ${model.user.registrationTime.toLocalDate()}</p>
             <p>Ваш профиль <#if model.user.state == "CONFIRMED"> подтвержден.<#else> не подтвержден.</#if></p>
 
-
+            <h2><a href="/profile_info_edit" >Изменить анкету</a></h2>
             <h2><a href="/profile_buy_list">Список купленных билетов</a></h2>
 
 
@@ -31,9 +31,10 @@
         </div>
         <div id="section2">
 
-            <a href="/profile_info"><img src="../images/avatar.png" alt=""/></a>
+            <a href="/profile_info_edit"><#if model.image??> <img src="/files/${model.image}" height="212" width="211" alt=""/>
+            <#else > <img src="../images/avatar.png" height="212" width="211" alt=""/> </#if>
+            </a>
 
-            <h2><a href="/profile_info_edit" >Изменить анкету</a></h2>
 
         </div>
         </#if>

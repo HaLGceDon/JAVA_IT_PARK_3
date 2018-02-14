@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface FilesInfoRepository extends JpaRepository<FileInfo, Long> {
   FileInfo findOneByStorageName(String fileName);
-  List<FileInfo> findAllByUser(User user);
+  FileInfo findFirstByDestinationAndUser(String destination, User user);
+  List<FileInfo> findAllByDestination(String destination);
 }

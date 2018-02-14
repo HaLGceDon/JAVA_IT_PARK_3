@@ -2,6 +2,7 @@ package ru.itpark.models.ticket;
 
 
 import lombok.*;
+import ru.itpark.models.file.FileInfo;
 import ru.itpark.models.user.User;
 
 import javax.persistence.*;
@@ -20,11 +21,6 @@ public class BuyTicket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
     private String ticketsName;
     private String ticketsCode;
     private LocalDateTime buyTime;
@@ -35,6 +31,10 @@ public class BuyTicket {
     private int adultPrice;
     private int kidsPrice;
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OrderBy
     @Enumerated(value = EnumType.STRING)

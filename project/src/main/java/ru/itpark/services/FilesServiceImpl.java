@@ -3,13 +3,17 @@ package ru.itpark.services;
 import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.forms.GalleryForm;
 import ru.itpark.models.file.FileInfo;
+import ru.itpark.models.ticket.Tickets;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.FilesInfoRepository;
+import ru.itpark.repositories.TicketsRepository;
 import ru.itpark.repositories.UsersRepository;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +21,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
@@ -30,12 +35,15 @@ public class FilesServiceImpl implements FilesService {
   @Autowired
   private UsersRepository usersRepository;
 
+  @Autowired
+  private TicketsRepository ticketsRepository;
+
   @Value(value = "${storage.path}")
   private String storagePath;
 
   @Override
   @SneakyThrows
-  public String save(Authentication authentication, MultipartFile multipartFile) {
+  public String save(Authentication authentication, MultipartFile multipartFile, String destination, String modelId) {
     // создаем объект с иноформацией о файле
     // которая будет хранится в бд
     FileInfo fileInfo = FileInfo.builder()
@@ -43,6 +51,7 @@ public class FilesServiceImpl implements FilesService {
             .size(multipartFile.getSize())
             .user(usersRepository.findByLogin(authentication.getName()).get())
             .type(multipartFile.getContentType())
+            .destination(destination)
             .build();
     // генерируем случайное имя файла чтобы не было коллизий
     String newName = UUID.randomUUID().toString().replace("-","");
@@ -60,6 +69,12 @@ public class FilesServiceImpl implements FilesService {
     // сохраняем информацию в БД
     filesInfoRepository.save(fileInfo);
     // возвращаем клиенту имя файла
+    if (modelId != null) {
+      Tickets ticket = ticketsRepository.findTicketsByName(modelId);
+      ticket.setImage(fileInfo);
+      ticketsRepository.save(ticket);
+    }
+
     return fileInfo.getStorageName();
   }
 
@@ -72,13 +87,22 @@ public class FilesServiceImpl implements FilesService {
             new File(fileInfo.getUrl()));
     IOUtils.copy(inputStream, response.getOutputStream());
     response.flushBuffer();
+    inputStream.close();
   }
 
 
   @Override
-  public List<FileInfo> getAdminImages() {
+  public List<FileInfo> getImagesByDestination(String destination) {
 
-    return filesInfoRepository.findAllByUser(usersRepository.findOne(1L));
+    return filesInfoRepository.findAllByDestination(destination);
+
+  }
+
+
+  @Override
+  public FileInfo getImageByDestinationAndUser(String destination, User user) {
+
+    return filesInfoRepository.findFirstByDestinationAndUser(destination, user);
 
   }
 
@@ -91,9 +115,14 @@ public class FilesServiceImpl implements FilesService {
   }
 
     @Override
+    @SneakyThrows
     public String deleteImage(GalleryForm galleryForm) {
         FileInfo image = filesInfoRepository.findOneByStorageName(galleryForm.getStorageName());
         filesInfoRepository.delete(image);
-        return image.getViewName();
+        Path path = Paths.get(storagePath, galleryForm.getStorageName());
+        Files.deleteIfExists(path);
+
+        return image.getStorageName();
     }
+
 }

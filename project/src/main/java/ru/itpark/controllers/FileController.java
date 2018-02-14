@@ -15,15 +15,19 @@ import ru.itpark.services.FilesService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
-public class FilesController {
+public class FileController {
 
   @Autowired
   private AuthenticationService authenticationService;
 
   @Autowired
   private FilesService filesService;
+
+
+
 
   @PostMapping(value = "/files")
   @ResponseStatus(value = HttpStatus.ACCEPTED)
@@ -33,9 +37,14 @@ public class FilesController {
   // с таким названием
   // принимаем file как Multipart
   public String handleFileUpload(@RequestParam("file") MultipartFile multipartFile,
+                                 @RequestParam("destination") String destination,
+                                 String ticketId,
                                  Authentication authentication) {
     // отправляем логику сохранения на слой сервисов
-    return filesService.save(authentication, multipartFile);
+
+    String modelId = ticketId;
+
+      return filesService.save(authentication, multipartFile, destination, modelId);
   }
 
 
@@ -54,7 +63,8 @@ public class FilesController {
       model.addAttribute("user", user);
     }
     model.addAttribute("select", "gallery");
-    List<FileInfo> images = filesService.getAdminImages();
+    String destination = "gallery";
+    List<FileInfo> images = filesService.getImagesByDestination(destination);
     model.addAttribute("images", images);
     return "galleryPages/gallery";
   }
@@ -70,7 +80,8 @@ public class FilesController {
     }
     String viewName = filesService.addViewName(galleryForm);
     model.addAttribute("select", "gallery");
-    List<FileInfo> images = filesService.getAdminImages();
+    String destination = "gallery";
+    List<FileInfo> images = filesService.getImagesByDestination(destination);
     model.addAttribute("images", images);
     return "galleryPages/gallery";
   }
@@ -86,8 +97,9 @@ public class FilesController {
       model.addAttribute("user", user);
     }
     model.addAttribute("select", "gallery");
-    String deleteName = filesService.deleteImage (galleryForm);
-    List<FileInfo> images = filesService.getAdminImages();
+    String storageName = filesService.deleteImage (galleryForm);
+    String destination = "gallery";
+    List<FileInfo> images = filesService.getImagesByDestination(destination);
     model.addAttribute("images", images);
     return "galleryPages/gallery";
   }

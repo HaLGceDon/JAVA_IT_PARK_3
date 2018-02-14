@@ -28,7 +28,7 @@
                                 <a href="/buy_tickets/${ticket.name}"><span>Взрослый билет - ${ticket.adultPrice} рублей</span></a>
                                 <br>
                                 <a href="/buy_tickets/${ticket.name}"><span>Детский билет - ${ticket.kidsPrice} рублей</span></a>
-                                <div><a href="/buy_tickets/${ticket.name}"><img <#if ticket.pictureUrl??>src="${ticket.pictureUrl}"<#else >src="../images/avatar.png"</#if> alt=""/></a></div>
+                                <div><a href="/buy_tickets/${ticket.name}"><img <#if ticket.image??>src="/files/${ticket.image.storageName}"<#else >src="../images/ticket.png"</#if> height="211" width="265" alt=""/></a></div>
                                 <p> ${ticket.specification}</p>
                             </li>
 						</#list>

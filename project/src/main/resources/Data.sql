@@ -28,15 +28,14 @@ CREATE TABLE IF NOT EXISTS persistent_logins (
 
 
 INSERT INTO public.tickets
-(id, name, adult_price, kids_price, tittle, specification, picture_url)
+(id, name, adult_price, kids_price, tittle, specification)
   SELECT
     1,
     'basic',
     '600',
     '300',
     'Безлимитный на весь день',
-    'Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымышленный зоопарк.',
-    '../images/ticket-lion.jpg'
+    'Неограниченное посещение зоопарка в течении одного дня. Еда и напитки бесплатно, это же вымышленный зоопарк.'
   WHERE
     NOT EXISTS(
         SELECT id
@@ -45,15 +44,14 @@ INSERT INTO public.tickets
     );
 
 INSERT INTO public.tickets
-(id, name, adult_price, kids_price, tittle, specification, picture_url)
+(id, name, adult_price, kids_price, tittle, specification)
   SELECT
     2,
     'dolphin',
     '800',
     '400',
     'Посещение дельфинария',
-    'Дельфины и другие морские животные с радостью обольют вас водой, и совсем недорого. Мороженое бесплатно.',
-    '../images/ticket-dolphin.jpg'
+    'Дельфины и другие морские животные с радостью обольют вас водой, и совсем недорого. Мороженое бесплатно.'
   WHERE
     NOT EXISTS(
         SELECT id
@@ -62,15 +60,14 @@ INSERT INTO public.tickets
     );
 
 INSERT INTO public.tickets
-(id, name, adult_price, kids_price, tittle, specification, picture_url)
+(id, name, adult_price, kids_price, tittle, specification)
   SELECT
     3,
     'gorilla',
     '700',
     '350',
     'Обучающее шоу с Гориллой',
-    'Оригинальное и позновательное шоу с гориллой по имени Джек для взрослых и детей. Горилла добрая, кусает только глупых, не смертельно.',
-    '../images/ticket-gorilla.jpg'
+    'Оригинальное и позновательное шоу с гориллой по имени Джек для взрослых и детей. Горилла добрая, кусает только глупых, не смертельно.'
   WHERE
     NOT EXISTS(
         SELECT id

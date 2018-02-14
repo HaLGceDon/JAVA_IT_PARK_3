@@ -1,6 +1,7 @@
 function uploadFile(file) {
     var formData = new FormData();
     formData.append("file", file);
+    formData.append("destination", "profile");
 
     $.ajax({
         type: "POST",
@@ -9,7 +10,7 @@ function uploadFile(file) {
         contentType: false,
         processData: false,
         success: function (data) {
-            alert(data);
+            window.location = 'http://localhost/profile_info_edit';
         },
         error: function (data) {
             alert(data.status);

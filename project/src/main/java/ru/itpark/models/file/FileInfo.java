@@ -23,6 +23,7 @@ public class FileInfo {
   private User user;
 
   private String viewName;
+  private String destination;
   private String storageName;
   private String originalName;
 

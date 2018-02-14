@@ -7,7 +7,7 @@
         <title>Zoo</title>
         <link rel="stylesheet" href="/css/style.css" type="text/css" />
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script type="text/javascript" src="/js/fileLoad.js"></script>
+        <script type="text/javascript" src="/js/fileGalleryLoad.js"></script>
 	</head>
 	<body>
 		<div id="page">
@@ -17,10 +17,10 @@
 				<div id="gallery">
                     <#if model.user?? > <#if model.user.login == "admin">
                     <h2>Выберите изображение для загрузки в галерею.</h2>
+
                         <input id="fileInput" type="file" placeholder="Выбрать файл">
                         <button name="uploadButton"
-                               onclick="uploadFile(document.getElementById('fileInput')['files'][0])">Загрузить</button>
-                        </form>
+                                onclick="uploadFile(document.getElementById('fileInput')['files'][0])">Загрузить</button>
                     <#else >
 					</#if>
 					</#if>
@@ -30,7 +30,7 @@
 						<#list model.images as image>
 
                             <li>
-                                <div> <img src="/files/${image.storageName}" alt="image"/> </div>
+                                <div> <img src="/files/${image.storageName}" width="212" height="211" alt="image"/> </div>
                                 <#if image.viewName??><b> ${image.viewName}</b></#if>
                             <#if model.user?? > <#if model.user.login == "admin">
                                 <form name="galleryForm" method="post" action="/delete_image">

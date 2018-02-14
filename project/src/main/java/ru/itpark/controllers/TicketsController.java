@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.itpark.forms.GalleryForm;
 import ru.itpark.forms.PayForm;
 import ru.itpark.forms.TicketForm;
 import ru.itpark.models.ticket.BuyTicket;
 import ru.itpark.models.ticket.Tickets;
 import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
+import ru.itpark.services.FilesService;
 import ru.itpark.services.TicketsService;
 
 import java.util.List;
@@ -28,6 +30,9 @@ public class TicketsController {
     private AuthenticationService authenticationService;
 
     private BuyTicket buyTicket;
+
+    @Autowired
+    private FilesService filesService;
 
     @GetMapping ("/tickets")
     public String getTickets(@ModelAttribute("model") ModelMap model,
@@ -205,6 +210,21 @@ public class TicketsController {
         return "ticketsPages/tickets_redaction";
     }
 
+
+    @PostMapping("/delete_ticket_image")
+    public String deleteTicketImage(@ModelAttribute("model") ModelMap model,
+                                    GalleryForm galleryForm,
+                                    Authentication authentication) {
+        filesService.deleteImage(galleryForm);
+        if (authentication != null) {
+            User user = authenticationService.getUserByAuthentication(authentication);
+            model.addAttribute("user", user);
+        }
+        model.addAttribute("select", "tickets");
+        List<Tickets> tickets = service.getTickets();
+        model.addAttribute("tickets", tickets);
+        return "ticketsPages/tickets_redaction";
+    }
 
 
 
