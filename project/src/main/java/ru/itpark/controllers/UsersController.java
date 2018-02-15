@@ -38,7 +38,7 @@ public class UsersController {
     @GetMapping(value = "/users")
     public String getUsers(@ModelAttribute("model")ModelMap model) {
         List<User> users = usersRepository.findAll();
-        model.addAttribute("user", users);
+        model.addAttribute("users", users);
         return "profilePages/users";
     }
 

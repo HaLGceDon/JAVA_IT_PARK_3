@@ -4,15 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.company</groupId>
+    <groupId>grigoriev.vasilii</groupId>
     <artifactId>project</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
 
 
     <properties>
         <lombok.version>1.16.16</lombok.version>
         <postgres.version>42.1.4</postgres.version>
         <hibernate.version>5.2.12.Final</hibernate.version>
+        <javax.mail.version>1.4.7</javax.mail.version>
+        <commons-io.version>2.6</commons-io.version>
     </properties>
 
     <parent>
@@ -52,12 +54,12 @@
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
-            <version>1.4.7</version>
+            <version>${javax.mail.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.6</version>
+            <version>${commons-io.version}</version>
         </dependency>
 
 
