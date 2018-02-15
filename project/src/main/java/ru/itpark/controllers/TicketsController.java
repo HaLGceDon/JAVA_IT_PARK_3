@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.itpark.forms.GalleryForm;
 import ru.itpark.forms.PayForm;
 import ru.itpark.forms.TicketForm;
-import ru.itpark.models.ticket.BuyTicket;
-import ru.itpark.models.ticket.Tickets;
-import ru.itpark.models.user.User;
+import ru.itpark.models.tickets.BuyTicket;
+import ru.itpark.models.tickets.Tickets;
+import ru.itpark.models.users.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.FilesService;
 import ru.itpark.services.TicketsService;
@@ -40,7 +40,7 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
@@ -57,7 +57,7 @@ public class TicketsController {
         model.addAttribute("select", "tickets");
         Tickets ticket = service.getTicketByName(ticketName);
         buyTicket = BuyTicket.builder().name(ticketName).build();
-        model.addAttribute("ticket", ticket);
+        model.addAttribute("tickets", ticket);
        return "ticketsPages/buy_tickets";
     }
 
@@ -128,7 +128,7 @@ public class TicketsController {
                              Authentication authentication) {
 
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("user", user);
+        model.addAttribute("users", user);
         model.addAttribute("select", "profile");
         List<BuyTicket> tickets = service.getBuyTicketsByUser(authentication);
         model.addAttribute("buyTickets", tickets);
@@ -141,7 +141,7 @@ public class TicketsController {
                             Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         String newTicket = service.newTicket(ticketForm);
         model.addAttribute("newTicket", newTicket);
@@ -157,7 +157,7 @@ public class TicketsController {
                                       Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
@@ -171,7 +171,7 @@ public class TicketsController {
                                       Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         return "ticketsPages/tickets_new_ticket";
@@ -184,7 +184,7 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         String deleteTicked = service.deleteTicket(ticketForm.getName());
@@ -201,7 +201,7 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         service.updateTicket(ticketForm);
@@ -218,7 +218,7 @@ public class TicketsController {
         filesService.deleteImage(galleryForm);
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();

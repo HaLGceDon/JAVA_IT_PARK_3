@@ -1,12 +1,9 @@
-package ru.itpark.models.user;
+package ru.itpark.models.users;
 
 import lombok.*;
-import ru.itpark.models.file.FileInfo;
-import ru.itpark.models.ticket.BuyTicket;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "users")

@@ -1,4 +1,4 @@
-package ru.itpark.models.user;
+package ru.itpark.models.users;
 
 public enum Role {
   ADMIN, USER

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import ru.itpark.models.user.User;
+import ru.itpark.models.users.User;
 import ru.itpark.services.AuthenticationService;
 
 @Controller
@@ -22,7 +22,7 @@ public class Index {
                            Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("user", user);
+            model.addAttribute("users", user);
         }
         return "index";
     }

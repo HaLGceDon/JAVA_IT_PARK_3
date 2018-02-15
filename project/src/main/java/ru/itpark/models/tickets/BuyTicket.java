@@ -1,9 +1,8 @@
-package ru.itpark.models.ticket;
+package ru.itpark.models.tickets;
 
 
 import lombok.*;
-import ru.itpark.models.file.FileInfo;
-import ru.itpark.models.user.User;
+import ru.itpark.models.users.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

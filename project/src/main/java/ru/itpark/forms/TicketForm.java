@@ -1,7 +1,7 @@
 package ru.itpark.forms;
 
 import lombok.Data;
-import ru.itpark.models.ticket.Tickets;
+import ru.itpark.models.tickets.Tickets;
 
 @Data
 public class TicketForm {

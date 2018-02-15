@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.itpark.forms.RegistrationForm;
-import ru.itpark.models.user.User;
+import ru.itpark.models.users.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.RegistrationService;
 
@@ -34,7 +34,7 @@ public class RegistrationController {
       model.addAttribute("errorEmail", false);
       if (authentication != null) {
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("user", user);
+        model.addAttribute("users", user);
       }
       model.addAttribute("select", "registration");
       return "registrationPages/registration";
@@ -44,7 +44,7 @@ public class RegistrationController {
       model.addAttribute("errorLogin", false);
       if (authentication != null) {
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("user", user);
+        model.addAttribute("users", user);
       }
       model.addAttribute("select", "registration");
       return "registrationPages/registration";
@@ -62,7 +62,7 @@ public class RegistrationController {
     model.addAttribute("errorEmail", false);
     if (authentication != null) {
       User user = authenticationService.getUserByAuthentication(authentication);
-      model.addAttribute("user", user);
+      model.addAttribute("users", user);
     }
     model.addAttribute("select", "registration");
 

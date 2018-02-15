@@ -1,12 +1,10 @@
-package ru.itpark.models.ticket;
+package ru.itpark.models.tickets;
 
 
 import lombok.*;
 import ru.itpark.models.file.FileInfo;
 
 import javax.persistence.*;
-
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter

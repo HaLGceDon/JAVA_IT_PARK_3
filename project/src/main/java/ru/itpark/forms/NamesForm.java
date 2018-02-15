@@ -1,7 +1,7 @@
 package ru.itpark.forms;
 
 import lombok.Data;
-import ru.itpark.models.user.User;
+import ru.itpark.models.users.User;
 
 @Data
 public class NamesForm {
