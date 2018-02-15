@@ -29,7 +29,7 @@
             <br>
             <p>Возраст</p><input type="number"  name="age" value="${model.user.age}"/>
             <br>
-            <input type="submit" value="Сохранить изменеия">
+            <input type="submit" value="Сохранить изменения">
         </form>
             <br>
             <p>Чтобы изменить пароль нажмите<br> нижнюю кнопку и следуйте инструкциям:</p>

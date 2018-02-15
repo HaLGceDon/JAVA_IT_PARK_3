@@ -23,8 +23,8 @@
             <p>Дата регистрации на сайте: ${model.user.registrationTime.toLocalDate()}</p>
             <p>Ваш профиль <#if model.user.state == "CONFIRMED"> подтвержден.<#else> не подтвержден.</#if></p>
 
-            <h2><a href="/profile_info_edit" >Изменить анкету</a></h2>
             <h2><a href="/profile_buy_list">Список купленных билетов</a></h2>
+            <h2><a href="/profile_info_edit" >Изменить анкету</a></h2>
 
 
 
