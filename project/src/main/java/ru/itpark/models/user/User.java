@@ -1,4 +1,4 @@
-package ru.itpark.models.users;
+package ru.itpark.models.user;
 
 import lombok.*;
 

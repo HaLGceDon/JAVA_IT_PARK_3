@@ -1,7 +1,7 @@
 package ru.itpark.models.file;
 
 import lombok.*;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.User;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package ru.itpark.models.tickets;
+package ru.itpark.models.ticket;
 
 
 import lombok.*;

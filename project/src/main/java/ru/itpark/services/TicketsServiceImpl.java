@@ -8,10 +8,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.PayForm;
 import ru.itpark.forms.TicketForm;
-import ru.itpark.models.tickets.Tickets;
-import ru.itpark.models.tickets.BuyTicket;
-import ru.itpark.models.tickets.BuyTicketState;
-import ru.itpark.models.users.User;
+import ru.itpark.models.ticket.Tickets;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.BuyTicketState;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.BuyTicketRepository;
 import ru.itpark.repositories.TicketsRepository;
 

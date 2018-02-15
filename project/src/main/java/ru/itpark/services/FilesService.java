@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.forms.GalleryForm;
 import ru.itpark.models.file.FileInfo;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.User;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;

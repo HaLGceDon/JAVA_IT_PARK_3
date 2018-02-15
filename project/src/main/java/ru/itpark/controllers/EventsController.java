@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.itpark.forms.EventsForm;
 import ru.itpark.models.event.Event;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.EventsService;
 
@@ -29,7 +29,7 @@ public class EventsController {
                             Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
         List<Event> events = eventsService.getEvents();
         model.addAttribute("events", events);
@@ -43,7 +43,7 @@ public class EventsController {
                            EventsForm eventsForm) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
 
         model.addAttribute("select", "events");
         String newEventName = eventsService.newEvent(eventsForm);
@@ -60,7 +60,7 @@ public class EventsController {
                               EventsForm eventDeleteForm) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
 
         model.addAttribute("select", "events");

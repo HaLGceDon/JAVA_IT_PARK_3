@@ -3,8 +3,8 @@ package ru.itpark.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itpark.forms.NamesForm;
-import ru.itpark.models.users.State;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.State;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 
 import java.util.List;

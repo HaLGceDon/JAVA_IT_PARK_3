@@ -10,7 +10,7 @@ import ru.itpark.forms.GalleryForm;
 import ru.itpark.forms.NamesForm;
 import ru.itpark.forms.RegistrationForm;
 import ru.itpark.models.file.FileInfo;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.User;
 import ru.itpark.repositories.UsersRepository;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.FilesService;
@@ -38,8 +38,8 @@ public class UsersController {
     @GetMapping(value = "/users")
     public String getUsers(@ModelAttribute("model")ModelMap model) {
         List<User> users = usersRepository.findAll();
-        model.addAttribute("users", users);
-        return "profilePages/users";
+        model.addAttribute("user", users);
+        return "profilePages/user";
     }
 
     @GetMapping(value = "/profile")
@@ -48,7 +48,7 @@ public class UsersController {
 
 
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
         model.addAttribute("select", "profile");
         FileInfo fileInfo = filesService.getImageByDestinationAndUser("profile", user);
         if (fileInfo!=null) {
@@ -63,7 +63,7 @@ public class UsersController {
                               Authentication authentication) {
 
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
         FileInfo fileInfo = filesService.getImageByDestinationAndUser("profile", user);
         if (fileInfo != null) {
             model.addAttribute("image", fileInfo.getStorageName());
@@ -89,7 +89,7 @@ public class UsersController {
         }
 
         usersService.update(authenticationService.getUserByAuthentication(authentication).getId(), form);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
         model.addAttribute("select", "profile");
         FileInfo fileInfo = filesService.getImageByDestinationAndUser("profile", user);
         if (fileInfo != null) {
@@ -113,7 +113,7 @@ public class UsersController {
                                Authentication authentication) {
         filesService.deleteImage(galleryForm);
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
         FileInfo fileInfo = filesService.getImageByDestinationAndUser("profile", user);
         if (fileInfo != null) {
             model.addAttribute("image", fileInfo.getStorageName());

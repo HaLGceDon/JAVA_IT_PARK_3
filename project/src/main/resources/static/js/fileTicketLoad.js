@@ -3,7 +3,7 @@ function uploadFile(file, ticketId) {
     if (file.size > 1048576) return alert("Размер файла слишком большой, допустимо не более 1 MB.");
     var formData = new FormData();
     formData.append("file", file);
-    formData.append("destination", "tickets");
+    formData.append("destination", "ticket");
     formData.append("ticketId", ticketId);
 
 

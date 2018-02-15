@@ -3,8 +3,8 @@ package ru.itpark.services;
 import org.springframework.security.core.Authentication;
 import ru.itpark.forms.PayForm;
 import ru.itpark.forms.TicketForm;
-import ru.itpark.models.tickets.BuyTicket;
-import ru.itpark.models.tickets.Tickets;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.Tickets;
 
 import java.util.List;
 

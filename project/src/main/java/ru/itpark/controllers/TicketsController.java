@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.itpark.forms.GalleryForm;
 import ru.itpark.forms.PayForm;
 import ru.itpark.forms.TicketForm;
-import ru.itpark.models.tickets.BuyTicket;
-import ru.itpark.models.tickets.Tickets;
-import ru.itpark.models.users.User;
+import ru.itpark.models.ticket.BuyTicket;
+import ru.itpark.models.ticket.Tickets;
+import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.FilesService;
 import ru.itpark.services.TicketsService;
@@ -40,12 +40,12 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
-        return "ticketsPages/tickets";
+        model.addAttribute("ticket", tickets);
+        return "ticketsPages/ticket";
     }
 
 
@@ -54,10 +54,10 @@ public class TicketsController {
     public String getBuyTickets ( @ModelAttribute("model") ModelMap model,
                                   @PathVariable("ticket_name") String ticketName) {
 
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         Tickets ticket = service.getTicketByName(ticketName);
         buyTicket = BuyTicket.builder().name(ticketName).build();
-        model.addAttribute("tickets", ticket);
+        model.addAttribute("ticket", ticket);
        return "ticketsPages/buy_tickets";
     }
 
@@ -128,7 +128,7 @@ public class TicketsController {
                              Authentication authentication) {
 
         User user = authenticationService.getUserByAuthentication(authentication);
-        model.addAttribute("users", user);
+        model.addAttribute("user", user);
         model.addAttribute("select", "profile");
         List<BuyTicket> tickets = service.getBuyTicketsByUser(authentication);
         model.addAttribute("buyTickets", tickets);
@@ -141,13 +141,13 @@ public class TicketsController {
                             Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
         String newTicket = service.newTicket(ticketForm);
         model.addAttribute("newTicket", newTicket);
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticket", tickets);
         return "ticketsPages/tickets_new_ticket";
     }
 
@@ -157,11 +157,11 @@ public class TicketsController {
                                       Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticket", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -171,9 +171,9 @@ public class TicketsController {
                                       Authentication authentication) {
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         return "ticketsPages/tickets_new_ticket";
     }
 
@@ -184,13 +184,13 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         String deleteTicked = service.deleteTicket(ticketForm.getName());
         model.addAttribute("deleteTicked", deleteTicked);
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticket", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -201,12 +201,12 @@ public class TicketsController {
 
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         service.updateTicket(ticketForm);
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticket", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -218,11 +218,11 @@ public class TicketsController {
         filesService.deleteImage(galleryForm);
         if (authentication != null) {
             User user = authenticationService.getUserByAuthentication(authentication);
-            model.addAttribute("users", user);
+            model.addAttribute("user", user);
         }
-        model.addAttribute("select", "tickets");
+        model.addAttribute("select", "ticket");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("ticket", tickets);
         return "ticketsPages/tickets_redaction";
     }
 

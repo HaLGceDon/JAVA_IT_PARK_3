@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/password_change/**").permitAll()
             .antMatchers("/success_password_change/**").permitAll()
             .antMatchers("/profile/**").hasAnyAuthority("USER", "ADMIN") // разрешили админу и пользователям
-            .antMatchers("/users/**").hasAnyAuthority("ADMIN") // только админу
+            .antMatchers("/user/**").hasAnyAuthority("ADMIN") // только админу
             .antMatchers("/tickets_redaction/**").hasAnyAuthority("ADMIN")
             .antMatchers("/tickets_new_ticket/**").hasAnyAuthority("ADMIN")
 

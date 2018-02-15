@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itpark.forms.GalleryForm;
 import ru.itpark.models.file.FileInfo;
-import ru.itpark.models.users.User;
+import ru.itpark.models.user.User;
 import ru.itpark.services.AuthenticationService;
 import ru.itpark.services.FilesService;
 
@@ -59,7 +59,7 @@ public class FileController {
                            Authentication authentication) {
     if (authentication != null) {
       User user = authenticationService.getUserByAuthentication(authentication);
-      model.addAttribute("users", user);
+      model.addAttribute("user", user);
     }
     model.addAttribute("select", "gallery");
     String destination = "gallery";
@@ -75,7 +75,7 @@ public class FileController {
                              GalleryForm galleryForm) {
     if (authentication != null) {
       User user = authenticationService.getUserByAuthentication(authentication);
-      model.addAttribute("users", user);
+      model.addAttribute("user", user);
     }
     String viewName = filesService.addViewName(galleryForm);
     model.addAttribute("select", "gallery");
@@ -93,7 +93,7 @@ public class FileController {
                              GalleryForm galleryForm) {
     if (authentication != null) {
       User user = authenticationService.getUserByAuthentication(authentication);
-      model.addAttribute("users", user);
+      model.addAttribute("user", user);
     }
     model.addAttribute("select", "gallery");
     String storageName = filesService.deleteImage (galleryForm);
