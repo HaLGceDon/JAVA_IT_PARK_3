@@ -30,7 +30,7 @@
 						<#list model.images as image>
 
                             <li>
-                                <div> <img src="/files/${image.storageName}" width="212" height="211" alt="image"/> </div>
+                                    <div> <img src="/files/${image.storageName}" width="212" height="211" alt="image"/> </div>
                                 <#if image.viewName??><b> ${image.viewName}</b></#if>
                             <#if model.user?? > <#if model.user.login == "admin">
                                 <form name="galleryForm" method="post" action="/delete_image">
