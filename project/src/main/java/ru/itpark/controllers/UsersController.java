@@ -39,7 +39,7 @@ public class UsersController {
     public String getUsers(@ModelAttribute("model")ModelMap model) {
         List<User> users = usersRepository.findAll();
         model.addAttribute("user", users);
-        return "profilePages/user";
+        return "profilePages/users";
     }
 
     @GetMapping(value = "/profile")

@@ -45,7 +45,7 @@ public class TicketsController {
         model.addAttribute("select", "ticket");
         List<Tickets> tickets = service.getTickets();
         model.addAttribute("ticket", tickets);
-        return "ticketsPages/ticket";
+        return "ticketsPages/tickets";
     }
 
 
