@@ -22,15 +22,15 @@
                   action="/buy_tickets_pay">
                 <br>
                 <p>
-                    <b>Номер карты</b><input type="text"  name="cardNumber" value="0000000000000000" required maxlength="19" />
+                    <b>Номер карты</b><input type="text"  name="cardNumber"  required maxlength="19" />
                 <br>
-                    <b>Месяц</b><input type="text"  name="cardMonth" required value="00" size="10" maxlength="2" />
+                    <b>Месяц</b><input type="text"  name="cardMonth" required  size="10" maxlength="2" />
 
-                    <b>Год</b><input type="text"  name="cardYear" required value="00" size="9" maxlength="2" />
+                    <b>Год</b><input type="text"  name="cardYear" required  size="9" maxlength="2" />
                 <br>
-                    <b>CVC код </b><input type="text"  name="cardCvc" required  value="000" size="8" maxlength="3" />
+                    <b>CVC код </b><input type="text"  name="cardCvc" required   size="8" maxlength="3" />
                 <br>
-                    <b>Имя Фамилия</b><input type="text"  name="cardHolder" value="null" required size="19" />
+                    <b>Имя Фамилия</b><input type="text"  name="cardHolder"  required size="19" />
                 <br>
                     <br>
                 <input type="submit" value="* Оплатить">

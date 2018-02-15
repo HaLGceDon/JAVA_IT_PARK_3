@@ -42,9 +42,9 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets";
     }
 
@@ -54,9 +54,9 @@ public class TicketsController {
     public String getBuyTickets ( @ModelAttribute("model") ModelMap model,
                                   @PathVariable("ticket_name") String ticketName) {
 
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         Tickets ticket = service.getTicketByName(ticketName);
-        buyTicket = BuyTicket.builder().name(ticketName).build();
+        buyTicket = BuyTicket.builder().ticketsName(ticketName).build();
         model.addAttribute("ticket", ticket);
        return "ticketsPages/buy_tickets";
     }
@@ -81,7 +81,7 @@ public class TicketsController {
         if (form.getQuantityAdult() == 0 & form.getQuantityKids() == 0) {
             model.addAttribute("quantity", 0);
         } else model.addAttribute("quantity", 1);
-        form.setName(buyTicket.getName());
+        form.setName(buyTicket.getTicketsName());
         buyTicket = service.getBuyTickets(form);
         model.addAttribute("buySum", service.getBuyTickets(form).getPrice());
         model.addAttribute("adultBuySum", service.buyAdultTicketsSum(form));
@@ -109,11 +109,12 @@ public class TicketsController {
         payForm.setQuantityKids(buyTicket.getQuantityKids());
         payForm.setQuantityAdult(buyTicket.getQuantityAdult());
         payForm.setPrice(buyTicket.getPrice());
+        payForm.setName(buyTicket.getTicketsName());
         User user = service.payTickets(payForm, authentication).getUser();
         if (user != null) {
             String email = user.getEmail();
             model.addAttribute("email", email);
-            return "buy_tickets_pay_confirm";
+            return "ticketsPages/buy_tickets_pay_confirm";
         }else {
             model.addAttribute("error", true);
             model.addAttribute("price",buyTicket.getPrice());
@@ -132,7 +133,7 @@ public class TicketsController {
         model.addAttribute("select", "profile");
         List<BuyTicket> tickets = service.getBuyTicketsByUser(authentication);
         model.addAttribute("buyTickets", tickets);
-        return "ticketsPages/profile_buy_list";
+        return "profilePages/profile_buy_list";
     }
 
     @PostMapping("/add_ticket")
@@ -145,9 +146,9 @@ public class TicketsController {
         }
         String newTicket = service.newTicket(ticketForm);
         model.addAttribute("newTicket", newTicket);
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets_new_ticket";
     }
 
@@ -159,9 +160,9 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -173,7 +174,7 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         return "ticketsPages/tickets_new_ticket";
     }
 
@@ -186,11 +187,11 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         String deleteTicked = service.deleteTicket(ticketForm.getName());
         model.addAttribute("deleteTicked", deleteTicked);
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -203,10 +204,10 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         service.updateTicket(ticketForm);
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets_redaction";
     }
 
@@ -220,9 +221,9 @@ public class TicketsController {
             User user = authenticationService.getUserByAuthentication(authentication);
             model.addAttribute("user", user);
         }
-        model.addAttribute("select", "ticket");
+        model.addAttribute("select", "tickets");
         List<Tickets> tickets = service.getTickets();
-        model.addAttribute("ticket", tickets);
+        model.addAttribute("tickets", tickets);
         return "ticketsPages/tickets_redaction";
     }
 

@@ -13,9 +13,9 @@
     <div id="content">
         <div id="section2">
 <p>Купленные билеты можно распечатать либо предьявить на экране вашего электронного устройства.</p>
-<#if model.tickets?? >
+<#if model.buyTickets?? >
     <h2>Купленные билеты:</h2>
-    <#list model.tickets as buyTicket>
+    <#list model.buyTickets as buyTicket>
         <br>
         <p>Имя - ${buyTicket.ticketsName}, Общая цена: ${buyTicket.price}. Код - ${buyTicket.ticketsCode}</p>
         <p>Количество взрослых билетов - ${buyTicket.quantityAdult}, Количество детских билетов - ${buyTicket.quantityKids}</p>

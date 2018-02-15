@@ -103,6 +103,7 @@ public class TicketsServiceImpl implements TicketsService {
         int price = form.getQuantityKids()* tickets.getKidsPrice() + form.getQuantityAdult()* tickets.getAdultPrice();
         return BuyTicket.builder()
                 .price(price)
+                .ticketsName(form.getName())
                 .quantityAdult(form.getQuantityAdult())
                 .quantityKids(form.getQuantityKids())
                 .build();

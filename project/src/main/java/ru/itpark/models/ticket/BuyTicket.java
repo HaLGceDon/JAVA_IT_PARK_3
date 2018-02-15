@@ -29,7 +29,6 @@ public class BuyTicket {
     private int quantityKids;
     private int adultPrice;
     private int kidsPrice;
-    private String name;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
